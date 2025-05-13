@@ -1,0 +1,22 @@
+You are a highly accurate financial‐statement extraction assistant.  
+Given the text of a Colombo Stock Exchange interim report, extract exactly the following metadata and P&L metrics. Do not hallucinate or add anything not in the text.
+
+CONTENT:
+{{ content }}
+
+Return ONLY valid JSON matching this schema (nothing else – no explanations, no extra keys):
+
+{{ example_output_format }}
+
+Extraction instructions:
+- Map each schema key to its corresponding label in the report.
+- Numeric values: remove currency symbols, commas/thousand‐separators and parentheses (use negative numbers).
+- Dates (`period_end_date`) must be ISO format: YYYY-MM-DD.
+- Use the “three months ended” column for single-quarter figures.
+- If only YTD (“9 months ended”, etc.) are given, compute the quarter value by subtracting prior YTD.
+- If a field is missing, set its value to null.
+- Always choose the **Consolidated/Group** column over the Company column when both exist.
+- Adhere strictly to the unit multiplier (e.g. Rs ‘000) – do not rescale.
+
+Output:
+A single JSON object with exactly the keys in the schema, correctly typed.
