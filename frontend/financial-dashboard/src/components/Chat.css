@@ -1,0 +1,24 @@
+.chat-fab{
+  position:fixed; top:20px; right:20px;
+  padding:8px 12px; background:#1976d2; color:#fff;
+  border:none; border-radius:4px; cursor:pointer; z-index:1000;
+}
+.chat-panel{
+  position:fixed; top:60px; right:20px; width:320px; height:420px;
+  background:#fff; border:1px solid #ddd; border-radius:6px;
+  display:flex; flex-direction:column; z-index:1000;
+}
+.chat-log{
+  flex:1; padding:10px; overflow-y:auto; font-size:14px;
+}
+.line.user{ text-align:right; color:#1976d2; margin:4px 0; }
+.line.bot { text-align:left ; color:#444    ; margin:4px 0; }
+.chat-input{
+  display:flex; border-top:1px solid #eee;
+}
+.chat-input input{
+  flex:1; border:none; padding:8px;
+}
+.chat-input button{
+  border:none; background:#1976d2; color:#fff; padding:0 12px;
+}
