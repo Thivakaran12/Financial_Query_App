@@ -1,0 +1,266 @@
+Richard Pieris Exports PLC
+Interim Financial Statements
+Nine Months ended 31st December 2022
+Consolidated Statement of Financial Position
+As at 31st December As at 31st March
+2022 2022
+Rs. 000 Rs. 000
+ASSETS
+Non-current Assets
+Property, Plant & Equipment 2,218,857 1 ,705,284
+Investment in Associate 421,951 346,132
+Investment Property 352,599 3 52,599
+Right of use asset 1 31,015 133,719
+Advance Payment for Investment 57,363 5 7,363
+Deferred Tax Asset - 2,240
+3,181,784 2,597,337
+Discontinued Operations
+Assets of Arpico Natural Latex Foams (Pvt ) Ltd - -
+Current Assets
+Inventories 1,340,761 752,757
+Trade & Other Receivables 1,875,830 2 ,126,232
+Tax Receivable - -
+Short Term Investment 472,856 4 48,788
+Amounts Due from Related Parties 232,227 5 8,327
+Cash and Bank Balances 2,255,692 1,761,802
+6,177,366 5,147,906
+Total Assets 9 ,359,150 7,745,243
+EQUITY AND LIABILITIES
+Stated Capital 220,262 2 20,262
+Revenue Reserves 3,770,636 2,899,207
+Foreign Currency Translation 347,533 2 55,338
+Equity Attributable to Equity Holders of the Parent 4,338,431 3,374,807
+Non Controlling Interest 1,626,682 1 ,529,830
+Total Equity 5,965,113 4,904,637
+Non-Current Liabilities
+Interest Bearning Loans and Borrowings 75,000 150,000
+W``` 86,575 88,134
+Retirement Benefit Obligation 117,556 115,260
+Lease Instalments Payable After One Year 1 39,557 135,057
+418,688 488,451
+Discontinued Operations
+Liabilities of Arpico Natural Latex Foams (Pvt ) Ltd
+226,990 2 26,944
+Current Liabilities
+Trade and Other Payables 354,996 775,946
+Income Tax Payable 1 32,576 8 8,366
+Amounts Due to Related Parties 9 50,135 330,767
+Lease Instalments Payable In the Ensuing Year 14,449 14,448
+Interest Bearing Loans & Borrowings 1,296,203 915,684
+2,748,359 2,125,211
+Total Liabilities 3,394,037 2,840,606
+Total Equity and Liabilities 9 ,359,150 7,745,243
+The above figures are subject to audit
+I certify that the above Financial Statements have been prepared in compliance with the requirments of the Companies Act No. 07 of 2007.
+…………………………………………..
+Palika Chandrajeewa
+Chief Finance Officer -Exports Sector
+The Board of Directors is responsible for the preparation and presentation of these Financial Statements.
+Approved and Signed for and on behalf of the Board on 14th February 2023 in Colombo.
+………………………………. …………………………….
+W.R.Abeysirigunawardena W.J. Viville P. Perera
+Director Director
+Company Statement of Financial Position
+As at 31st December As at 31st March
+2022 2022
+Rs. 000 Rs. 000
+ASSETS
+Non-current Assets
+Property, Plant & Equipment 1 62,169 1 03,140
+Long Term Investments 4 63,023 4 63,023
+Deferred Tax Asset - 2 ,240
+6 25,192 5 68,403
+Current Assets
+Inventories 4 55,523 2 49,386
+Trade & Other Receivables 7 32,671 9 69,282
+Other Current Financial Assets 4 66,007 4 41,824
+Amounts Due from Related Parties 7 3,013 3 ,475
+Cash and Bank Balances 1 ,408,684 9 93,948
+3 ,135,898 2 ,657,915
+Total Assets 3 ,761,090 3 ,226,318
+EQUITY AND LIABILITIES
+Stated Capital 2 20,262 2 20,262
+Revenue Reserves 3 ,140,970 2 ,327,789
+Total Equity 3 ,361,232 2 ,548,051
+Non-Current Liabilities
+Retirement Benefit Obligation 8 1,748 7 7,798
+Deferred Tax Liability 1 ,027
+8 2,775 7 7,798
+Current Liabilities
+Trade and Other Payables 1 26,286 2 32,508
+Income Tax Payable 1 23,237 7 8,035
+Amounts Due to Related Parties 6 7,560 2 89,926
+3 17,083 6 00,469
+Total Liabilities 3 99,858 6 78,267
+Total Equity and Liabilities 3 ,761,090 3 ,226,318
+The above figures are subject to audit
+I certify that the above Financial Statements have been prepared in compliance with the requirments of the Companies Act No. 07 of 2007.
+…………………………………………..
+Palika Chandrajeewa
+Chief Finance Officer -Exports Sector
+The Board of Directors is responsible for the preparation and presentation of these Financial Statements.
+Approved and Signed for and on behalf of the Board on 14th Febraury 2023 in Colombo.
+……………………………… …………………………….
+W.R.Abeysirigunawardena W.J. Viville P. Perera
+Director Director
+Consolidated Income Statements
+3 months ended 31st December 9 months ended 31st December
+2022 2021 Change 2022 2021 Change
+Rs. '000 Rs. '000 % Rs. '000 Rs. '000 %
+Continuing Operations
+Revenue 1,909,048 1 ,778,416 7 7,338,076 4,932,795 4 9
+Cost of Sales (1,487,153) (1,202,429) 24 (5,202,121) ( 3,313,847) 5 7
+Gross Profit 421,895 575,987 (27) 2 ,135,955 1,618,948 3 2
+Other Operating Income 7,125 6,878 4 19,696 18,067 9
+Distribution Costs (308,958) (299,925) 3 ( 1,135,901) ( 729,362) 5 6
+Administrative Expenses (108,560) (76,958) 41 (331,982) (212,326) 5 6
+Other Operating Expenses - - - - -
+Profit from Operations 1 1,502 205,982 (94) 6 87,768 6 95,327 ( 1)
+Finance Income 14,272 14,012 2 142,845 31,452 3 54
+Finance Cost 45,655 ( 15,432) (396) ( 713) (28,129) ( 97)
+Other Financial Items 12,743 5,483 132 7 24,360 2 4,770 2 ,824
+Share of Profit/ (Loss) of Associate ( 5,576) 3,493 (260) (19,063) 5 14 ( 3,809)
+Profit Before Tax 7 8,596 2 13,538 (63) 1,535,197 7 23,934 1 12
+Taxation ( 26,038) ( 31,643) (18) (240,731) (99,261) 1 43
+Profit for the Period from Continuing Operations 5 2,558 181,895 (71) 1 ,294,466 6 24,673 1 07
+Discontinued Operations
+Loss after tax for the period from discontinued operations ( 15) (15) - ( 45) ( 45) -
+Profit for the period 5 2,543 181,880 (71) 1,294,421 6 24,628 1 07
+Attributable to: - - - -
+Equity Holders of the Parent 61,266 148,154 (59) 1,197,569 4 61,310 1 60
+Non Controlling Interest ( 8,723) 33,725 (126) 9 6,852 1 63,318 ( 41)
+5 2,543 181,879 (71) 1,294,421 6 24,628 1 07
+Rs. Rs. Rs. Rs.
+Earnings Per Share 5.49 1 3.27 107.27 41.32
+Earnings Per Share from Continuing Operations 5.49 1 3.27 107.27 41.32
+Dividend per Share - - - -
+Figures in brackets indicate deductions.
+The above figures are subject to audit.
+Company Income Statements
+3 months ended 31st December 9 months ended 31st December
+2022 2021 Change 2022 2021 Change
+Rs. '000 Rs. '000 % Rs. '000 Rs. '000 %
+Revenue 522,708 608,294 ( 14) 2 ,624,773 1 ,676,079 5 7
+Cost of Sales ( 413,390) (372,274) 1 1 ( 1,676,749) (1,082,590) 5 5
+Gross Profit 1 09,318 236,020 ( 54) 948,024 5 93,489 6 0
+Other Operating Income 2 07 1,521 ( 86) 1 ,390 2 ,014 ( 31)
+Distribution Costs ( 50,592) ( 81,810) ( 38) ( 286,156) ( 146,333) 9 6
+Administrative Expenses ( 32,326) ( 2 6 , 3 17) 2 3 ( 1 0 1 , 9 49) ( 7 8 , 218) 3 0
+Profit from Operations 2 6,607 129,414 ( 79) 5 61,309 3 70,952 5 1
+Finance Income 6 4,096 8,911 6 19 1 38,993 23,049 5 03
+Finance Cost ( 1,754) ( 2,954) ( 41) ( 4,349) (4,989) ( 13)
+Other Financial Items 10,491 3 ,949 1 66 384,286 1 ,523 2 5,132
+Profit before Tax 9 9,440 1 39,320 ( 29) 1,080,239 3 90,535 1 77
+Taxation ( 27,250) ( 19,664) 3 9 ( 162,406) (53,304) 2 05
+Profit Attributable to Ordinary Shareholders 72,190 119,656 ( 40) 9 17,833 337,231 1 72
+Rs. Rs. Rs. Rs.
+Earnings Per Share 6 .47 1 0.72 8 2.22 3 0.21
+Dividend Per Share - - - -
+Figures in brackets indicate deductions.
+The above figures are subject to audit.
+Cash Flow Statements
+Consolidated Company
+For the 9 months period ended For the 9 months period ended
+31st Dec 2022 31st Dec 2021 31st Dec 2022 31st Dec 2021
+Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Cash Flows from Operating Activities
+Group Profit before Tax and Non-Controlling Interest
+From Continuing Operations 1,535,197 723,934 1,080,239 3 90,535
+Loss from discontinued Operations ( 45) (45) - -
+Adjustment to reconcile profit before tax to net cash flows 126,248 8 3,390 (129,888) (3,886)
+Operating profit before working capital changes 1,661,400 807,279 950,351 3 86,649
+Changes in Working Capital adjustments ( 324,086) (487,418) 1 (174,157)
+Cash generated from / (used in) operations 1,337,314 319,861 950,352 212,492
+Interest Paid 3,787 (19,022) 4,349 (4,989)
+Income Tax Paid ( 524,675) (180,439) (218,589) ( 82,577)
+Defined Benefit plan costs paid (10,605) (9,416) (2,996) (2,830)
+Net cash flows from / (used in) Operating activities 805,821 110,984 7 33,116 122,096
+Net cashflows from / (used in) investing activities (617,450) (533,242) 49,272 (387,291)
+Net cash inflow / (Out flow) before financing 188,371 (422,258) 782,388 (265,195)
+Net cash flows from / (used in) financing activities (79,109) (479,500) - -
+Net Increase / (decrease) in cash and cash equivalents 109,262 (901,758) 782,388 (265,195)
+Cash and cash equivalents at the beginning of the period 9 50,227 1 ,042,005 993,948 875,017
+Cash and cash equivalents at the end of the period 1,059,489 140,247 1,776,336 6 09,822
+Analysis of Cash and Cash Equivalents
+Cash at Bank & in Hand
+From Continuing operations 2,255,692 1,021,650 1,408,684 6 09,822
+From Discontinuing operations - - - -
+2,255,692 1,021,650 1,408,684 6 09,822
+Bank Overdraft (1,196,203) (881,403) - -
+1,059,489 140,247 1,408,684 6 09,822
+Figures in brackets indicate deductions.
+The above figures are subject to audit.
+Statements of Comprehensive Income
+3 months ended 31st December 9 months ended 31st December
+2022 2021 2022 2021
+Consolidated Rs.'000 Rs.'000 Rs.'000 Rs.'000
+Profit for the period 5 2,543 1 81,879 1 ,294,421 6 24,628
+Other comprehensive income / (Expenses) not to be reclassified
+to profit or loss in subsequent periods
+Actuarial gains/ ( losses) on defined benefit plans
+Deferred Tax effect on actuarial gains /(losses) on defined benefit plans
+Change in fair value on other investment at fair value through other
+comprehensive income - - - -
+Other Comprehensive Income / (Expenses) to be reclassified to
+profit or loss in subsequent periods
+Share of Other Comprehensive Income of Associate
+Acturial gains/(losses) on defined benefit plans
+Translation of Associate using foreign functional currency 1 ,868 3 19 9 2,195 1 ,447
+Other comprehensive income for the period 1 ,868 3 19 9 2,195 1 ,447
+Total comprehensive income for the period 54,411 182,198 1,386,616 626,075
+Attributable to
+Equity Holder of the Parent Company 6 3,134 1 48,473 1 ,289,764 4 62,757
+Non Controlling Interest ( 8,723) 3 3,725 9 6,852 1 63,318
+54,411 182,198 1,386,616 626,075
+3 months ended 31st December 9 months ended 31st December
+2022 2021 2022 2021
+Company Rs.'000 Rs.'000 Rs.'000 Rs.'000
+Profit for the period 7 2,190 1 19,656 9 17,833 3 37,231
+Other comprehensive income / (Expenses) not to be reclassified
+to profit or loss in subsequent periods
+Actuarial gains/ ( losses) on defined benefit plans - - -
+Deferred Tax effect on actuarial gains /(losses) on defined benefit plans - - -
+Change in fair value on other investment at fair value through other
+comprehensive income - - - -
+Other comprehensive income / (Expenses) to be reclassified to
+profit or loss in subsequent periods - - - -
+Other comprehensive income for the period - - - -
+Total comprehensive income for the period 72,190 119,656 917,833 337,231
+Figures in brackets indicate deductions.
+Statement of Changes in Equity
+Revenue Reserves
+Stated General Accumulated Foreign Currency Non Controlling Total
+Capital Reserves Profit Translation Interest
+Consolidated Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Balance as at 31st March 2021 2 20,262 2 19,250 1 ,700,361 1 33,408 1 ,175,550 3 ,448,831
+Profit for the period - - 1 ,298,953 - 3 58,899 1 ,657,852
+Other Comprehensive Income - - ( 6,772) 1 21,930 ( 4,619) 1 10,539
+Total Comprehensive Income - - 1 ,292,181 1 21,930 3 54,280 1 ,768,391
+Interim dividend ( 312,585) ( 312,585)
+Balance as at 31st March 2022 2 20,262 2 19,250 2 ,679,957 2 55,338 1 ,529,830 4 ,904,637
+Balance as at 31st March 2022 2 20,262 2 19,250 2 ,679,957 2 55,338 1 ,529,830 4 ,904,637
+Prior period adjustment for Surcharge Tax - - ( 326,140) - - ( 326,140)
+Adjusted Balance as at 31st March 2022 2 20,262 2 19,250 2 ,353,817 2 55,338 1 ,529,830 4 ,578,497
+Profit for the period - - 1 ,197,569 - 9 6,852 1 ,294,421
+Other Comprehensive Income - - - 9 2,195 - 9 2,195
+Total Comprehensive Income - - 1 ,197,569 9 2,195 9 6,852 1 ,386,616
+Interim dividend -
+Balance as at 31st December 2022 2 20,262 2 19,250 3 ,551,386 3 47,533 1 ,626,682 5 ,965,113
+Revenue Reserves
+Stated General Accumulated Total
+Capital Reserves Profit
+Company Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Balance as at 31st March 2021 2 20,262 2 19,250 1 ,397,186 1 ,836,698
+Profit for the period - - 1 ,027,626 1 ,027,626
+Other Comprehensive Income - - ( 3,688) ( 3,688)
+Total Comprehensive Income - - 1 ,023,938 1 ,023,938
+Interim dividend ( 312,585) ( 312,585)
+Balance as at 31st March 2022 2 20,262 2 19,250 2 ,108,539 2 ,548,051
+Balance as at 31st March 2022 2 20,262 2 19,250 2 ,108,539 2 ,548,051
+Prior period adjustment for Surcharge Tax - - ( 104,652) ( 104,652)
+Adjusted Balance as at 31st March 2022 2 20,262 2 19,250 2 ,003,887 2 ,443,399
+Profit for the period - - 9 17,833 9 17,833
+Other Comprehensive Income - - - -
+Total Comprehensive Income - - 9 17,833 9 17,833
+Interim Dividend - -
+Balance as at 31st December 2022 2 20,262 2 19,250 2 ,921,720 3 ,361,232

@@ -1,0 +1,15 @@
+{
+  "company": "Richard Pieris Exports PLC",
+  "symbol": "RPEL",
+  "fiscal_year": "2022/23",
+  "quarter": "Q1",
+  "period_end_date": "2022-09-30",
+  "currency": "LKR",
+  "unit_multiplier": 1000,
+  "revenue": 2661097,
+  "cogs": -1979877,
+  "gross_profit": 681220,
+  "operating_expenses": -469543,
+  "operating_income": 217655,
+  "net_income": 250220
+}

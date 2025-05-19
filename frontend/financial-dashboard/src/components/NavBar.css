@@ -1,0 +1,16 @@
+.navbar {
+  display: flex;
+  gap: 1rem;
+}
+.navbar button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.navbar button.active {
+  background: var(--brand-blue);
+  color: #fff;
+}

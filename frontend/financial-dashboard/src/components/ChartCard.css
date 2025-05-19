@@ -1,0 +1,22 @@
+.chart-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin: 1rem 0;
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-card-infos {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart-card-body {
+  margin-top: 1rem;
+}

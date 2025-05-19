@@ -1,0 +1,248 @@
+Richard Pieris Exports PLC
+Interim Financial Statements
+Six Months ended 30th September 2024
+Consolidated Statement of Financial Position
+As at 30th September As at 31st March
+2024 2024
+Rs. 000 Rs. 000
+ASSETS
+Non-current Assets
+Property, Plant & Equipment 3 ,213,671 3,028,459
+Investment in Associate 325,725 3 36,045
+Investment Property - Right of use asset 4 34,000 4 34,000
+Right of use asset 125,514 127,343
+Advance Payment for Investment 2 3,681 23,681
+Deferred Tax Asset 116,586 28,184
+4,239,177 3 ,977,712
+Discontinued Operations
+Assets of Arpico Natural Latex Foams (Pvt ) Ltd - -
+Current Assets
+Inventories 1,643,101 1,491,335
+Trade & Other Receivables 2,575,043 2 ,044,538
+Tax Receivable 2 5,924 3 0,573
+Short Term Investment 345,035 3 42,294
+Amounts Due from Related Parties 134,861 1 44,261
+Cash and Bank Balances 1 ,321,667 1,710,374
+6 ,045,631 5,763,375
+Total Assets 10,284,808 9 ,741,087
+EQUITY AND LIABILITIES
+Stated Capital 220,262 2 20,262
+Revenue Reserves 3,288,900 3,205,775
+Foreign Currency Translation 260,567 265,112
+Equity Attributable to Equity Holders of the Parent 3,769,729 3,691,149
+Non Controlling Interest 1 ,317,151 1,439,466
+Total Equity 5,086,880 5,130,615
+Non-Current Liabilities
+Interest Bearning Loans and Borrowings - -
+Deferred Tax Liabilities 6 23 701
+Retirement Benefit Obligation 1 43,020 138,266
+Lease Instalments Payable After One Year 1 46,395 145,270
+290,038 2 84,237
+Discontinued Operations
+Liabilities of Arpico Natural Latex Foams (Pvt ) Ltd 227,048 227,013
+Current Liabilities
+Trade and Other Payables 1,740,726 1 ,205,586
+Income Tax Payable 28,857 -
+Amounts Due to Related Parties 615,199 6 02,650
+Lease Instalments Payable In the Ensuing Year 23,784 23,601
+Interest Bearing Loans & Borrowings 2,272,276 2,267,385
+4,680,842 4,099,222
+Total Liabilities 5,197,928 4 ,610,472
+Total Equity and Liabilities 10,284,808 9 ,741,087
+The above figures are subject to audit
+I certify that the above Financial Statements have been prepared in compliance with the requirments of the Companies Act No. 07 of 2007.
+…………………………………………..
+Charith Ariyarathna
+Finance Controller -Exports Sector
+The Board of Directors is responsible for the preparation and presentation of these Financial Statements.
+Approved and Signed for and on behalf of the Board on 06th November 2024 in Colombo.
+………………………………. …………………………….
+Lalith C Wijeyesinghe W.J. Viville P. Perera
+Director Director
+Company Statement of Financial Position
+As at 30th September As at 31st March
+2024 2024
+Rs. 000 Rs. 000
+ASSETS
+Non-current Assets
+Property, Plant & Equipment 3 87,254 3 91,587
+Long Term Investments 4 63,023 4 63,023
+Deferred Tax Asset 1 1,723 1 3,384
+8 62,000 8 67,994
+Current Assets
+Inventories 2 86,310 2 93,193
+Trade & Other Receivables 9 35,350 5 90,410
+Other Current Financial Assets 3 37,169 3 34,131
+Income Tax Refund - 3 ,202
+Amounts Due from Related Parties 1 4,694 1 3,538
+Cash and Bank Balances 1 ,066,443 1 ,282,227
+2 ,639,966 2 ,516,701
+Total Assets 3 ,501,966 3 ,384,695
+EQUITY AND LIABILITIES
+Stated Capital 2 20,262 2 20,262
+Revenue Reserves 2 ,900,607 2 ,720,507
+Total Equity 3 ,120,869 2 ,940,769
+Non-Current Liabilities
+Retirement Benefit Obligation 1 13,891 1 09,013
+1 13,891 1 09,013
+Current Liabilities
+Trade and Other Payables 1 96,181 2 26,890
+Income Tax Payable 2 8,722 -
+Amounts Due to Related Parties 4 2,303 1 08,023
+2 67,206 3 34,913
+Total Liabilities 3 81,097 4 43,926
+Total Equity and Liabilities 3 ,501,966 3 ,384,695
+The above figures are subject to audit
+I certify that the above Financial Statements have been prepared in compliance with the requirments of the Companies Act No. 07 of 2007.
+…………………………………………..
+Charith Ariyarathna
+Finance Controller -Exports Sector
+The Board of Directors is responsible for the preparation and presentation of these Financial Statements.
+Approved and Signed for and on behalf of the Board on 06th November 2024 in Colombo.
+……………………………… …………………………….
+Lalith C Wijeyesinghe W.J. Viville P. Perera
+Director Director
+Consolidated Income Statements
+3 months ended 30th September 6 months ended 30th September
+2024 2023 Change 2024 2023 Change
+Rs. '000 Rs. '000 % Rs. '000 Rs. '000 %
+Continuing Operations
+Revenue 2,139,733 2,069,984 3 3 ,822,273 3,544,442 8
+Cost of Sales ( 1,707,131) ( 1,661,929) 3 ( 3,146,524) ( 2,937,896) 7
+Gross Profit 4 32,602 4 08,055 6 6 75,749 6 06,546 1 1
+Other Operating Income 8,217 10,520 -22 13,743 1 8,298 ( 25)
+Distribution Costs ( 351,682) ( 202,073) 74 ( 545,449) ( 364,606) 5 0
+Administrative Expenses (88,697) (103,343) -14 ( 168,952) (192,069) ( 12)
+Other Operating Expense - - - - - -
+- -
+Profit / (Loss)from Operations 4 40 113,159 -100 (24,909) 68,169 ( 137)
+Finance Income 1 8,360 38,552 -52 40,081 6 6,839 ( 40)
+Finance Cost ( 15,830) (31,991) -51 ( 30,954) ( 37,541) ( 18)
+Other Financial Items (72,933) 126,432 -158 ( 28,476) (49,044) ( 42)
+Share of Profit/ (Loss) of Associate ( 3,264) ( 5,137) -36 ( 8,344) ( 6,778) 2 3
+Profit /( Loss) Before Tax ( 73,227) 2 41,015 -130 ( 52,602) 41,645 ( 226)
+Taxation 1 9,415 ( 65,148) -130 13,447 (8,684) ( 255)
+Profit / (Loss) for the Period from Continuing Operations ( 53,812) 1 75,867 -131 ( 39,155) 32,961 ( 219)
+Discontinued Operations
+Loss after tax for the period from discontinued operations ( 18) ( 15) 2 0.00 ( 35) ( 30) 1 7
+Profit /(Loss) for the period ( 53,830) 1 75,852 -131 ( 39,190) 32,931 ( 219)
+Attributable to:
+Equity Holders of the Parent 1 2,293 1 21,182 -90 83,125 7 0,985 1 7
+Non Controlling Interest ( 66,123) 54,670 -221 ( 122,315) ( 38,054) 221
+( 53,830) 1 75,852 -131 ( 39,190) 32,931 ( 219)
+Rs. Rs. Rs. Rs.
+Earnings Per Share 1 .10 1 0.85 7 .45 6.36
+Earnings Per Share from Continuing Operations 1 .10 1 0.85 7 .45 6.36
+Dividend per Share - - - -
+Figures in brackets indicate deductions.
+The above figures are subject to audit.
+Company Income Statements
+3 months ended 30th September 6 months ended 30th September
+2024 2023 Change 2024 2023 Change
+Rs. '000 Rs. '000 % Rs. '000 Rs. '000 %
+Revenue 6 79,360 4 69,983 4 5 1 ,295,483 990,094 3 1
+Cost of Sales ( 467,683) ( 348,208) 34 ( 884,456) ( 721,740) 2 3
+Gross Profit 211,677 1 21,775 7 4 4 11,027 2 68,354 5 3
+Other Operating Income 917 973 (6) 977 1 ,069 ( 9)
+Distribution Costs (48,698) ( 43,586) 1 2 ( 74,500) ( 62,441) 1 9
+Administrative Expenses # R E (F5!4,962) # R ( 5E0F!,462) # R E F ! 9 # (R 1E0F2!,878) # R E ( F9!2,124) # R E F ! 1 2
+Profit from Operations 1 08,934 2 8,700 2 80 2 34,626 1 14,858 1 04
+Finance Income 1 8,078 2 2,418 ( 19) 3 9,425 5 0,217 ( 21)
+Finance Cost (614) ( 839) ( 27) ( 1,250) ( 1,958) ( 36)
+Other Financial Items (34,121) 6 8,244 ( 150) ( 14,550) ( 15,336) ( 5)
+Profit before Tax 9 2,277 1 18,523 ( 22) 258,251 1 47,781 7 5
+Taxation (28,672) ( 34,873) ( 18) ( 78,151) ( 43,651) 7 9
+Profit Attributable to Ordinary Shareholders 6 3,605 8 3,650 (24) 1 80,100 1 04,130 7 3
+Rs. Rs. Rs. Rs.
+Earnings Per Share 5 .70 7.49 1 6.13 9 .33
+Dividend Per Share - - - -
+Figures in brackets indicate deductions.
+The above figures are subject to audit.
+Statements of Comprehensive Income
+3 months ended 30th September 6 months ended 30th September
+2024 2023 2024 2023
+Consolidated Rs.'000 Rs.'000 Rs.'000 Rs.'000
+Profit /( Loss) for the period ( 53,830) 1 75,852 ( 39,190) 3 2,931
+Other comprehensive income / (Expenses) not to be
+reclassified to profit or loss in subsequent periods
+Actuarial gains/ ( losses) on defined benefit plans -
+Deferred Tax effect on actuarial gains /(losses) on defined benefit plans -
+Change in fair value on other investment at fair value through other
+comprehensive income - -
+Other Comprehensive Income / (Expenses) to be reclassified to
+profit or loss in subsequent periods
+Share of Other Comprehensive Income of Associate
+Acturial gains/(losses) on defined benefit plans
+Translation of Associate using foreign functional currency ( 7,562) 1 5,831 ( 4,545) ( 8,053)
+Other comprehensive income/ (Expenses) for the period ( 7,562) 1 5,831 ( 4,545) ( 8,053)
+Total comprehensive income /(Expenses) for the period ( 61,392) 1 91,683 ( 43,735) 2 4,878
+Attributable to
+Equity Holder of the Parent Company 4 ,731 1 37,013 7 8,580 6 2,932
+Non Controlling Interest ( 66,123) 5 4,670 ( 122,315) ( 38,054)
+( 61,392) 1 91,683 ( 43,735) 2 4,878
+3 months ended 30th September 6 months ended 30th September
+2024 2023 2024 2023
+Company Rs.'000 Rs.'000 Rs.'000 Rs.'000
+Profit for the period 6 3,605 8 3,650 1 80,100 1 04,130
+Other comprehensive income / (Expenses) not to be
+reclassified to profit or loss in subsequent periods
+Actuarial gains/ ( losses) on defined benefit plans - - -
+Deferred Tax effect on actuarial gains /(losses) on defined benefit plans - - -
+Change in fair value on other investment at fair value through other
+comprehensive income - - -
+Other comprehensive income / (Expenses) to be reclassified to
+profit or loss in subsequent periods - - -
+-
+Other comprehensive income for the period - - -
+Total comprehensive income for the period 6 3,605 8 3,650 1 80,100 1 04,130
+4 0,152
+Figures in brackets indicate deductions.
+Statement of Changes in Equity
+Revenue Reserves
+Stated General Accumulated Foreign Currency Non Controlling Total
+Capital Reserves Profit Translation Interest
+Consolidated Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Balance as at 31st March 2023 2 20,262 2 19,250 3 ,078,830 2 98,144 1 ,474,085 5 ,290,571
+Profit for the period - - 6 4,050 - ( 29,991) 3 4,059
+Other Comprehensive Income - - ( 22,390) ( 33,032) ( 4,628) ( 60,050)
+Total Comprehensive Income - - 4 1,660 ( 33,032) ( 34,619) ( 25,991)
+Interim dividend ( 133,965) ( 133,965)
+Balance as at 31st March 2024 2 20,262 2 19,250 2 ,986,525 2 65,112 1 ,439,466 5 ,130,615
+Balance as at 31st March 2024 2 20,262 2 19,250 2 ,986,525 2 65,112 1 ,439,466 5 ,130,615
+Profit for the period - - 8 3,125 - ( 122,315) ( 39,190)
+Other Comprehensive Income - - - ( 4,545) - ( 4,545)
+Total Comprehensive Income - - 8 3,125 ( 4,545) ( 122,315) ( 43,735)
+Interim dividend - - - - - -
+Balance as at 30th September 2024 2 20,262 2 19,250 3 ,069,650 2 60,567 1 ,317,151 5 ,086,880
+Revenue Reserves
+Stated General Accumulated Total
+Capital Reserves Profit
+Company Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Balance as at 31st March 2023 2 20,262 2 19,250 2 ,550,510 2 ,990,022
+Profit for the period - - 1 03,182 1 03,182
+Other Comprehensive Income - - ( 18,470) ( 18,470)
+Total Comprehensive Income - - 8 4,712 8 4,712
+Interim dividend ( 133,965) ( 133,965)
+Balance as at 31st March 2024 2 20,262 2 19,250 2 ,501,257 2 ,940,769
+Balance as at 31st March 2024 2 20,262 2 19,250 2 ,501,257 2 ,940,769
+Profit for the period - - 1 80,100 1 80,100
+Other Comprehensive Income - - - -
+Total Comprehensive Income - - 1 80,100 1 80,100
+Interim Dividend - - - -
+Balance as at 30th September 2024 2 20,262 2 19,250 2 ,681,357 3 ,120,869
+Consolidated Segmental Information
+Turnover Profit / (Loss) before Tax Total Assets Total Liabilities
+For the 6 months period ended For the 6 months period ended
+As at 30th As at 30th As at 30th As at 30th
+September 2024 September 2023 September 2024 September 2023
+30th September 30th September 30th September 30th September
+2024 2023 2024 2023
+Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000 Rs. '000
+Mineral Segment 39,624 29,816 3 ,446 3 19 81,469 66,875 39,448 2 8,391
+Latex Based Segment 2 ,505,527 2,533,271 ( 305,989) ( 100,000) 6,880,093 5,809,510 4,818,807 3 ,537,506
+Hard Rubber Segment 1,295,483 9 90,094 2 58,251 1 47,781 3 ,501,966 3 ,391,401 381,097 297,249
+3 ,840,634 3,553,181 ( 44,292) 48,100 1 0,463,528 9 ,267,786 5 ,239,352 3,863,146
+Adjustment for Inter Group Transactions (18,361) ( 8,739) ( 8,309) ( 6,454) (178,720) ( 122,717) (41,424) (33,526)
+3 ,822,273 3,544,442 ( 52,602) 4 1,645 1 0,284,808 9,145,069 5,197,928 3 ,829,620
+Figures in brackets indicate deductions.
+The above figures are subject to audit.

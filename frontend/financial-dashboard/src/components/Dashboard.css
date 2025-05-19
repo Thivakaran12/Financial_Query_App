@@ -1,0 +1,98 @@
+/* overall layout */
+.dashboard {
+  width: 100%;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* main title */
+.title-h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+  margin: 0;
+}
+
+/* filters row */
+.filters-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* date pickers */
+.date-picker {
+  display: none; /* we now use inline DatePicker without wrapper */
+}
+
+/* KPI cards */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+/* metric tabs */
+.tab-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.tab {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: var(--brand-blue);
+  color: #fff;
+  border-color: var(--brand-blue);
+}
+
+/* 2×3 chart grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* shared chart-card styling */
+.chart-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.chart-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* chat button footer */
+.dashboard-footer {
+  text-align: center;
+}
+
+.agent-btn {
+  background: var(--brand-blue);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.agent-btn:hover {
+  background: #0d1c3d;
+}

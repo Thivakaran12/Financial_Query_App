@@ -1,0 +1,11 @@
+.drp {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.drp input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+}

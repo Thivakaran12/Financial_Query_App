@@ -1,0 +1,27 @@
+.metric-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.metric-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.metric-value {
+  font-size: 1.45rem;       /* bigger / bolder */
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.metric-delta {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.metric-delta.pos { color: #2ca02c; }
+.metric-delta.neg { color: #d62728; }

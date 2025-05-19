@@ -1,0 +1,55 @@
+{
+  "name": "financial-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.6.0",
+    "recharts": "^2.15.3",
+    "react-datepicker": "^4.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "browser": {
+    "react-datepicker/src/calendar.tsx": false,
+    "react-datepicker/src/calendar_container.tsx": false,
+    "react-datepicker/src/calendar_icon.tsx": false,
+    "react-datepicker/src/click_outside_wrapper.tsx": false,
+    "react-datepicker/src/date_utils.ts": false,
+    "react-datepicker/src/day.tsx": false,
+    "react-datepicker/src/index.tsx": false,
+    "react-datepicker/src/input_time.tsx": false,
+    "react-datepicker/src/month.tsx": false,
+    "react-datepicker/src/month_dropdown.tsx": false,
+    "react-datepicker/src/month_dropdown_options.tsx": false,
+    "react-datepicker/src/month_year_dropdown.tsx": false,
+    "react-datepicker/src/month_year_dropdown_options.tsx": false,
+    "react-datepicker/src/popper_component.tsx": false,
+    "react-datepicker/src/portal.tsx": false,
+    "react-datepicker/src/tab_loop.tsx": false,
+    "react-datepicker/src/time.tsx": false,
+    "react-datepicker/src/week.tsx": false,
+    "react-datepicker/src/week_number.tsx": false,
+    "react-datepicker/src/with_floating.tsx": false,
+    "react-datepicker/src/year.tsx": false,
+    "react-datepicker/src/year_dropdown.tsx": false,
+    "react-datepicker/src/year_dropdown_options.tsx": false
+  }
+}

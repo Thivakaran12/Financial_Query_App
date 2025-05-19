@@ -1,0 +1,15 @@
+{
+  "company": "Richard Pieris Exports PLC",
+  "symbol": null,
+  "fiscal_year": "2021/22",
+  "quarter": "Q1",
+  "period_end_date": "2021-12-31",
+  "currency": "LKR",
+  "unit_multiplier": 1000,
+  "revenue": 1778416,
+  "cogs": -1202429,
+  "gross_profit": 575987,
+  "operating_expenses": -376883,
+  "operating_income": 205982,
+  "net_income": 181879
+}

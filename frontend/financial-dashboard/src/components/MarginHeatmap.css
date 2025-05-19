@@ -1,0 +1,20 @@
+.heat-grid {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr);
+}
+.heat-head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 4px;
+  text-align: center;
+  color: var(--text-main);
+}
+.heat-label {
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  border-right: 1px solid var(--border);
+}
+.heat-cell {
+  height: 18px;
+  border: 1px solid var(--border);
+}

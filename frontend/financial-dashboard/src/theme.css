@@ -1,0 +1,45 @@
+:root {
+  /* —— Colour Palette —————————————————————————————————— */
+  --brand-blue:        #11285c;              /* dark navy */
+  --brand-blue-light:  #163b8c;              /* slightly brighter */
+  --accent:            var(--brand-blue);    /* use navy everywhere */
+  --accent-hover:      #0d1c3d;              /* darker hover */
+
+  --bg-light:          #f6f8fc;              /* very light ice */
+  --card-bg:           #ffffff;              /* pure white cards */
+  --border:            #e1e6f0;              /* subtle border */
+
+  --text-main:         #1e2a3b;              /* dark text */
+  --text-muted:        #6c7a8c;              /* secondary text */
+
+  /* —— Chat Bubble Colours ——————————————————————————————— */
+  --user-bubble:       var(--brand-blue);
+  --bot-bubble:        var(--bg-light);
+
+  /* —— Radii & Shadows —————————————————————————————————— */
+  --radius:            0.75rem;
+  --card-shadow:       0 4px 12px rgba(0, 0, 0, 0.05);
+
+  /* —— Typography ————————————————————————————————————— */
+  --font-sans:         "Segoe UI", Roboto, sans-serif;
+}
+
+/* react-select multi‐pill tweaks (EntitySelector) */
+.entity__control {
+  border:       1px solid var(--border);
+  box-shadow:   none;
+}
+
+.entity__multi-value {
+  background:   var(--brand-blue);
+  color:        #fff;
+}
+
+.entity__multi-value__label {
+  color:        #fff;
+}
+
+.entity__multi-value__remove:hover {
+  background:   var(--accent-hover);
+  color:        #fff;
+}

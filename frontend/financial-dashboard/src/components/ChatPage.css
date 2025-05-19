@@ -1,0 +1,133 @@
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-light);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-header h2 {
+  font-size: 1.5rem;
+  color: var(--brand-blue);
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+/* suggestion pills */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 2rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.suggestion-pill {
+  background: var(--brand-blue-light);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestion-pill:hover:not(:disabled) {
+  background: var(--brand-blue);
+}
+
+.suggestion-pill:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chat-message {
+  max-width: 70%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  line-height: 1.4;
+}
+
+.from-user {
+  align-self: flex-end;
+  background: var(--user-bubble);
+  color: #fff;
+}
+
+.from-bot {
+  align-self: flex-start;
+  background: var(--bot-bubble);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+}
+
+.chat-error {
+  color: #900;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.chat-footer {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+}
+
+.chat-input {
+  flex: 1;
+  resize: none;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  margin-right: 1rem;
+  min-height: 3rem;
+}
+
+.send-btn {
+  background: var(--brand-blue);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.suggestion-pill {
+  max-width: 220px;          /* wrap sooner */
+  white-space: normal;
+  text-align: left;
+}

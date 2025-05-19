@@ -1,0 +1,15 @@
+{
+  "company": "DIPPED PRODUCTS PLC",
+  "symbol": null,
+  "fiscal_year": "2023/24",
+  "quarter": "Q1",
+  "period_end_date": "2024-03-31",
+  "currency": "LKR",
+  "unit_multiplier": 1000,
+  "revenue": 19076,
+  "cogs": -13583,
+  "gross_profit": 5492,
+  "operating_expenses": -1355,
+  "operating_income": 4137,
+  "net_income": 2958
+}

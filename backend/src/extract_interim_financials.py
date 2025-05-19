@@ -1,532 +1,21 @@
-# #!/usr/bin/env python3
-# """
-# Slim-line extractor: CSE interim PDFs → JSON + CSV (via LLM)
-# -----------------------------------------------------------
-# * Walks Data/Raw/**/{pdf} (two companies)
-# * Sends only the Consolidated P&L pages (or full document if not found)
-#   to an LLM via Jinja2 prompt → structured JSON
-# * Writes
-#     Data/Interim/<Company>/json/<pdf-stem>.json
-#     Data/Interim/<Company>/csv/pnl.csv   (appends)
-# * Uses timeouts, logging, sanity checks, and a fallback mechanism.
-# """
-# from __future__ import annotations
-# import json
-# import logging
-# import os
-# from pathlib import Path
-# from typing import Any, Dict, List, Optional
-
-# import pandas as pd
-# import pdfplumber
-# from dotenv import load_dotenv
-# from jinja2 import Template
-# from langchain.schema import HumanMessage
-# from langchain_openai import ChatOpenAI, AzureChatOpenAI
-
-# # ─────────── env & logging ───────────
-# load_dotenv()
-# logging.basicConfig(
-#     level=logging.INFO,
-#     format="%(asctime)s %(levelname)-8s %(message)s",
-# )
-
-# # ─────────── paths & config ──────────
-# ROOT        = Path(__file__).resolve().parent.parent
-# RAW_DIR     = ROOT / "Data" / "Raw"
-# INTERIM_DIR = ROOT / "Data" / "Interim"
-# PROMPT_FILE = ROOT / "src" / "prompts" / "financial_extraction.j2"
-# MAX_PAGES   = 8      # pages to scan initially for P&L
-# LLM_TIMEOUT = 60     # seconds per LLM call
-
-# COMPANY_MAP: Dict[str, str] = {
-#     "DIPD.N0000": "Dipped Products",
-#     "REXP.N0000": "Richard Pieris",
-# }
-
-# # ensure output directories exist
-# for comp in COMPANY_MAP.values():
-#     (INTERIM_DIR / comp / "json").mkdir(parents=True, exist_ok=True)
-#     (INTERIM_DIR / comp / "csv").mkdir(parents=True, exist_ok=True)
-
-# # ─────────── helpers ─────────────────
-
-# def llm_client() -> Any:
-#     common = {"temperature": 0}
-#     if os.getenv("OPENAI_API_BASE"):
-#         client = AzureChatOpenAI(
-#             azure_endpoint     = os.getenv("OPENAI_API_BASE"),
-#             openai_api_version = os.getenv("OPENAI_API_VERSION", "2024-02-01"),
-#             azure_deployment   = os.getenv("OPENAI_MODEL",       "gpt-4o"),
-#             **common,
-#         )
-#     else:
-#         client = ChatOpenAI(
-#             model_name=os.getenv("OPENAI_MODEL", "gpt-4o"),
-#             **common,
-#         )
-#     logging.info("LLM client initialized (%s)", client.__class__.__name__)
-#     return client
-
-
-# def read_prompt() -> Template:
-#     if not PROMPT_FILE.exists():
-#         raise FileNotFoundError(f"Prompt missing: {PROMPT_FILE}")
-#     return Template(PROMPT_FILE.read_text(encoding="utf-8"))
-
-
-# def find_pnl_pages(path: Path) -> List[str]:
-#     """
-#     Locate Group/Consolidated Income Statement pages.
-#     Fallback to full document if none found in first MAX_PAGES.
-#     """
-#     with pdfplumber.open(path) as pdf:
-#         pages = pdf.pages[:MAX_PAGES]
-#         matched: List[str] = []
-#         for pg in pages:
-#             txt = pg.extract_text() or ""
-#             if any(phrase in txt for phrase in (
-#                 "Consolidated Income Statement",
-#                 "STATEMENT OF PROFIT OR LOSS",
-#                 "Group" and "Profit or Loss",
-#             )):
-#                 matched.append(txt)
-#         if matched:
-#             logging.info("Found %d P&L page(s) in %s", len(matched), path.name)
-#             return matched
-#         logging.warning(
-#             "P&L heading not found in first %d pages of %s; using full document",
-#             MAX_PAGES, path.name
-#         )
-#         return [pg.extract_text() or "" for pg in pdf.pages]
-
-
-# def pdf_text(path: Path) -> str:
-#     pages = find_pnl_pages(path)
-#     return "\n".join(pages)
-
-
-# def ask_llm(
-#     tmpl: Template,
-#     content: str,
-#     example: Dict[str, Any],
-#     client: Any,
-#     pdf_name: str,
-# ) -> Optional[Dict[str, Any]]:
-#     prompt = tmpl.render(
-#         content=content,
-#         example_output_format=json.dumps(example, indent=2),
-#     )
-#     logging.info("Sending prompt to LLM for %s", pdf_name)
-#     try:
-#         resp = getattr(client, "invoke", client)(
-#             [HumanMessage(content=prompt)],
-#             timeout=LLM_TIMEOUT,
-#         )
-#     except Exception as e:
-#         logging.error("LLM call failed for %s: %s", pdf_name, e)
-#         return None
-#     raw = getattr(resp, "content", str(resp)).strip()
-#     logging.info("Received LLM response for %s", pdf_name)
-#     try:
-#         start, end = raw.find("{"), raw.rfind("}")
-#         body = raw[start : end + 1] if start != -1 and end != -1 else raw
-#         return json.loads(body)
-#     except Exception:
-#         logging.error("Failed to parse JSON for %s; raw output:\n%s", pdf_name, raw)
-#         return None
-
-
-# def company_from_path(pdf_path: Path) -> str:
-#     """
-#     Derive the company name from the parent directory under Data/Raw.
-#     """
-#     try:
-#         return pdf_path.parent.name.strip()
-#     except Exception:
-#         return ""
-
-
-# def write_outputs(rec: Dict[str, Any], pdf_path: Path) -> None:
-#     # what model returned
-#     llm_symbol  = str(rec.get("symbol") or "").strip()
-#     llm_company = str(rec.get("company") or "").strip()
-#     # what folder name indicates
-#     path_company = company_from_path(pdf_path)
-
-#     # choose folder: symbol → mapping, else folder name, else raw LLM company, else Unknown
-#     company = (
-#         COMPANY_MAP.get(llm_symbol)
-#         or path_company
-#         or llm_company
-#         or "Unknown"
-#     )
-
-#     base_json = INTERIM_DIR / company / "json"
-#     base_csv  = INTERIM_DIR / company / "csv"
-#     base_json.mkdir(parents=True, exist_ok=True)
-#     base_csv.mkdir(parents=True, exist_ok=True)
-
-#     # write JSON
-#     json_path = base_json / f"{pdf_path.stem}.json"
-#     json_path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-#     logging.info("JSON saved → %s", json_path.relative_to(ROOT))
-
-#     # append CSV
-#     csv_path = base_csv / "pnl.csv"
-#     pd.DataFrame([rec]).to_csv(
-#         csv_path,
-#         mode="a",
-#         header=not csv_path.exists(),
-#         index=False
-#     )
-#     logging.info("Row appended → %s", csv_path.relative_to(ROOT))
-
-
-# def main():
-#     client = llm_client()
-#     tmpl   = read_prompt()
-
-#     # neutral example to avoid bias
-#     example = {
-#         "company":            "<COMPANY NAME>",
-#         "symbol":             "<TICKER>",
-#         "fiscal_year":        "YYYY/YY",
-#         "quarter":            "Q1",
-#         "period_end_date":    "YYYY-MM-DD",
-#         "currency":           "LKR",
-#         "unit_multiplier":    1000,
-#         "revenue":            0,
-#         "cogs":               0,
-#         "gross_profit":       0,
-#         "operating_expenses": 0,
-#         "operating_income":   0,
-#         "net_income":         0,
-#     }
-
-#     for pdf_path in RAW_DIR.rglob("*.pdf"):
-#         logging.info("--- Processing %s ---", pdf_path.relative_to(ROOT))
-#         text   = pdf_text(pdf_path)
-#         record = ask_llm(tmpl, text, example, client, pdf_path.name)
-#         if not record:
-#             logging.warning("Skipping %s due to LLM errors", pdf_path.name)
-#             continue
-
-#         # Gross Profit sanity check
-#         rev  = record.get("revenue", 0)
-#         cogs = record.get("cogs", 0)
-#         gp   = record.get("gross_profit", 0)
-#         if abs(rev - cogs - gp) > 1:
-#             logging.warning(
-#                 "Inconsistency in Gross Profit for %s: rev %.0f – cogs %.0f != gp %.0f",
-#                 pdf_path.name, rev, cogs, gp
-#             )
-
-#         # completeness check
-#         required = [
-#             "revenue", "cogs", "gross_profit",
-#             "operating_expenses", "operating_income", "net_income",
-#         ]
-#         missing = [k for k in required if record.get(k) is None]
-#         if missing:
-#             logging.error(
-#                 "Missing fields %s in %s — inspect folder for corrections",
-#                 missing, pdf_path.name
-#             )
-#             continue
-
-#         write_outputs(record, pdf_path)
-
-#     logging.info("All PDFs processed. Outputs in Data/Interim/<Company>/…")
-
-
-# if __name__ == "__main__":
-#     main()
-
-
-
-
-# #!/usr/bin/env python3
-# """
-# Slim-line extractor: CSE interim PDFs → JSON + CSV (via LLM)
-# -----------------------------------------------------------
-# * Walks backend/Data/Raw/**/{pdf}  (two companies)
-# * Sends only the Consolidated P&L pages (or full document if not found)
-#   to an LLM via Jinja2 prompt → structured JSON
-# * Writes
-#     backend/Data/Interim/<Company>/json/<pdf-stem>.json
-#     backend/Data/Interim/<Company>/csv/pnl.csv   (appends)
-# * Uses timeouts, logging, sanity checks, and a fallback mechanism.
-# """
-# from __future__ import annotations
-# import json
-# import logging
-# import os
-# from pathlib import Path
-# from typing import Any, Dict, List, Optional
-
-# import pandas as pd
-# import pdfplumber
-# from dotenv import load_dotenv
-# from jinja2 import Template
-# from langchain.schema import HumanMessage
-# from langchain_openai import ChatOpenAI, AzureChatOpenAI
-
-# # ─────────── env & logging ───────────
-# load_dotenv()
-# logging.basicConfig(
-#     level=logging.INFO,
-#     format="%(asctime)s %(levelname)-8s %(message)s",
-# )
-
-# # ─────────── paths & config ──────────
-# # script is at backend/src/extract_interim_financials.py, so parent.parent == backend
-# ROOT        = Path(__file__).resolve().parent.parent
-# RAW_DIR     = ROOT / "Data" / "Raw"
-# INTERIM_DIR = ROOT / "Data" / "Interim"
-# PROMPT_FILE = ROOT / "src" / "prompts" / "financial_extraction.j2"
-# MAX_PAGES   = 8      # pages to scan initially for P&L
-# LLM_TIMEOUT = 60     # seconds per LLM call
-
-# COMPANY_MAP: Dict[str, str] = {
-#     "DIPD.N0000": "Dipped Products",
-#     "REXP.N0000": "Richard Pieris",
-# }
-
-# # ensure output directories exist
-# for comp in COMPANY_MAP.values():
-#     (INTERIM_DIR / comp / "json").mkdir(parents=True, exist_ok=True)
-#     (INTERIM_DIR / comp / "csv").mkdir(parents=True, exist_ok=True)
-
-# # ─────────── helpers ─────────────────
-
-# def llm_client() -> Any:
-#     common = {"temperature": 0}
-#     if os.getenv("OPENAI_API_BASE"):  # Azure
-#         client = AzureChatOpenAI(
-#             azure_endpoint     = os.getenv("OPENAI_API_BASE"),
-#             openai_api_version = os.getenv("OPENAI_API_VERSION", "2024-02-01"),
-#             azure_deployment   = os.getenv("OPENAI_MODEL", "gpt-4o"),
-#             **common,
-#         )
-#     else:
-#         client = ChatOpenAI(
-#             model_name=os.getenv("OPENAI_MODEL", "gpt-4o"),
-#             **common,
-#         )
-#     logging.info("LLM client initialized (%s)", client.__class__.__name__)
-#     return client
-
-
-# def read_prompt() -> Template:
-#     if not PROMPT_FILE.exists():
-#         raise FileNotFoundError(f"Prompt missing: {PROMPT_FILE}")
-#     return Template(PROMPT_FILE.read_text(encoding="utf-8"))
-
-
-# def find_pnl_pages(path: Path) -> List[str]:
-#     """
-#     Locate Group/Consolidated Income Statement pages.
-#     Fallback to full document if none found in first MAX_PAGES.
-#     """
-#     with pdfplumber.open(path) as pdf:
-#         heads = pdf.pages[:MAX_PAGES]
-#         matched: List[str] = []
-#         for pg in heads:
-#             txt = pg.extract_text() or ""
-#             if any(
-#                 phrase in txt
-#                 for phrase in (
-#                     "Consolidated Income Statement",
-#                     "STATEMENT OF PROFIT OR LOSS",
-#                     "Group Profit or Loss",
-#                 )
-#             ):
-#                 matched.append(txt)
-#         if matched:
-#             logging.info("Found %d P&L page(s) in %s", len(matched), path.name)
-#             return matched
-
-#         # fallback to full doc
-#         logging.warning(
-#             "P&L heading not found in first %d pages of %s; using full document",
-#             MAX_PAGES, path.name
-#         )
-#         return [pg.extract_text() or "" for pg in pdf.pages]
-
-
-# def pdf_text(path: Path) -> str:
-#     pages = find_pnl_pages(path)
-#     return "\n".join(pages)
-
-
-# def ask_llm(
-#     tmpl: Template,
-#     content: str,
-#     example: Dict[str, Any],
-#     client: Any,
-#     pdf_path: Path,
-# ) -> Dict[str, Any]:
-#     """
-#     Returns a dict in all cases. On JSON-parse failures it returns
-#     a minimal record with raw_output so we still write out a JSON.
-#     """
-#     prompt = tmpl.render(
-#         content=content,
-#         example_output_format=json.dumps(example, indent=2),
-#     )
-#     logging.info("Sending prompt to LLM for %s", pdf_path.name)
-#     try:
-#         resp = getattr(client, "invoke", client)(
-#             [HumanMessage(content=prompt)],
-#             timeout=LLM_TIMEOUT,
-#         )
-#     except Exception as e:
-#         logging.error("LLM call failed for %s: %s", pdf_path.name, e)
-#         # still return something so we write a JSON
-#         return {
-#             "company": pdf_path.parent.name,
-#             "symbol": "",
-#             "error": f"LLM call failed: {e}"
-#         }
-
-#     raw = getattr(resp, "content", str(resp)).strip()
-#     logging.info("Received LLM response for %s", pdf_path.name)
-
-#     try:
-#         start, end = raw.find("{"), raw.rfind("}")
-#         body = raw[start:end+1] if start != -1 and end != -1 else raw
-#         return json.loads(body)
-#     except Exception as e:
-#         logging.error("Failed to parse JSON for %s: %s", pdf_path.name, e)
-#         # fallback record preserves raw
-#         return {
-#             "company": pdf_path.parent.name,
-#             "symbol": "",
-#             "raw_output": raw,
-#             "parse_error": str(e),
-#         }
-
-
-# def company_from_path(pdf_path: Path) -> str:
-#     """
-#     Derive the company folder-name from the parent dir under Data/Raw.
-#     """
-#     return pdf_path.parent.name.strip()
-
-
-# def write_outputs(rec: Dict[str, Any], pdf_path: Path) -> None:
-#     llm_symbol  = str(rec.get("symbol") or "").strip()
-#     llm_company = str(rec.get("company") or "").strip()
-#     path_company = company_from_path(pdf_path)
-
-#     # choose the folder: first by exact symbol match, else by raw folder-name,
-#     # else by whatever LLM said, else "Unknown"
-#     company = (
-#         COMPANY_MAP.get(llm_symbol)
-#         or path_company
-#         or llm_company
-#         or "Unknown"
-#     )
-
-#     base_json = INTERIM_DIR / company / "json"
-#     base_csv  = INTERIM_DIR / company / "csv"
-#     base_json.mkdir(parents=True, exist_ok=True)
-#     base_csv.mkdir(parents=True, exist_ok=True)
-
-#     # JSON
-#     json_path = base_json / f"{pdf_path.stem}.json"
-#     json_path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-#     logging.info("JSON saved → %s", json_path.relative_to(ROOT))
-
-#     # CSV
-#     csv_path = base_csv / "pnl.csv"
-#     pd.DataFrame([rec]).to_csv(
-#         csv_path,
-#         mode="a",
-#         header=not csv_path.exists(),
-#         index=False
-#     )
-#     logging.info("Row appended → %s", csv_path.relative_to(ROOT))
-
-
-# def main():
-#     client = llm_client()
-#     tmpl   = read_prompt()
-
-#     example = {
-#         "company":            "<COMPANY NAME>",
-#         "symbol":             "<TICKER>",
-#         "fiscal_year":        "YYYY/YY",
-#         "quarter":            "Q1",
-#         "period_end_date":    "YYYY-MM-DD",
-#         "currency":           "LKR",
-#         "unit_multiplier":    1000,
-#         "revenue":            0,
-#         "cogs":               0,
-#         "gross_profit":       0,
-#         "operating_expenses": 0,
-#         "operating_income":   0,
-#         "net_income":         0,
-#     }
-
-#     count = 0
-#     total = 0
-
-#     # pick up ANY .pdf or .PDF in Raw/**
-#     for pdf_path in RAW_DIR.rglob("*"):
-#         if not pdf_path.is_file() or pdf_path.suffix.lower() != ".pdf":
-#             continue
-#         total += 1
-#         logging.info("--- Processing %s ---", pdf_path.relative_to(ROOT))
-
-#         text   = pdf_text(pdf_path)
-#         record = ask_llm(tmpl, text, example, client, pdf_path)
-
-#         # sanity‐check Gross Profit
-#         try:
-#             rev  = float(record.get("revenue", 0))
-#             cogs = float(record.get("cogs", 0))
-#             gp   = float(record.get("gross_profit", 0))
-#             if abs(rev - cogs - gp) > 1:
-#                 logging.warning(
-#                     "Inconsistency in Gross Profit for %s: rev %.0f – cogs %.0f != gp %.0f",
-#                     pdf_path.name, rev, cogs, gp
-#                 )
-#         except Exception:
-#             pass  # skip if non-numeric
-
-#         # write JSON + CSV for every file
-#         write_outputs(record, pdf_path)
-#         count += 1
-
-#     logging.info("Done: wrote %d/%d PDFs → JSON+CSV under Data/Interim", count, total)
-
-
-# if __name__ == "__main__":
-#     main()
-
-
-
 #!/usr/bin/env python3
 """
-Slim-line extractor: CSE interim PDFs → JSON + CSV (via LLM) + raw text dumps
----------------------------------------------------------------------------
-* Walks backend/Data/Raw/**/{pdf}  (two companies)
-* Extracts only the Consolidated P&L pages (or full document if not found)
-  and saves that text to backend/Data/Interim/<Company>/txt/*.txt
-* Sends that same text to an LLM via Jinja2 prompt → structured JSON
-* Writes
-    backend/Data/Interim/<Company>/json/<pdf-stem>.json
-    backend/Data/Interim/<Company>/csv/pnl.csv   (appends)
-* Uses timeouts, logging, sanity checks, and a fallback mechanism.
+extract_interim_financials.py
+
+Extract & structure quarterly P&L tables from raw CSE PDFs via an LLM.
+
+– Snip only the “03 months to …” table
+– Inject its exact header into the Jinja2 prompt
+– Post-validate & auto-fix YTD→QTR mismatches
+– Output per-PDF JSON and append to a per-company CSV
 """
-from __future__ import annotations
+
 import json
 import logging
 import os
+import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 
 import pandas as pd
 import pdfplumber
@@ -535,224 +24,201 @@ from jinja2 import Template
 from langchain.schema import HumanMessage
 from langchain_openai import ChatOpenAI, AzureChatOpenAI
 
-# ─────────── env & logging ───────────
-load_dotenv()
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)-8s %(message)s",
-)
+# ─── Shared utilities ─────────────────────────────────────────────────────────
+from backend.src.utils import extract_qtr_snippet, post_validate
 
-# ─────────── paths & config ──────────
-# script lives in backend/src/, so parent.parent == backend
-ROOT        = Path(__file__).resolve().parent.parent
-RAW_DIR     = ROOT / "Data" / "Raw"
-INTERIM_DIR = ROOT / "Data" / "Interim"
-PROMPT_FILE = ROOT / "src" / "prompts" / "financial_extraction.j2"
-MAX_PAGES   = 8      # pages to scan initially for P&L
-LLM_TIMEOUT = 60     # seconds per LLM call
+# ─── Constants & Paths ────────────────────────────────────────────────────────
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+RAW_DIR = PROJECT_ROOT / "data" / "raw"
+INTERIM_DIR = PROJECT_ROOT / "data" / "interim"
+PROMPT_FILE = PROJECT_ROOT / "backend" / "src" / "prompts" / "financial_extraction.j2"
+LOG_DIR = PROJECT_ROOT / "logs"
+
+LLM_TIMEOUT = 60         # seconds per LLM call
 
 COMPANY_MAP: Dict[str, str] = {
-    "DIPD.N0000": "Dipped Products",
-    "REXP.N0000": "Richard Pieris",
+    "DIPD.N0000": "dipped-products",
+    "REXP.N0000": "richard-pieris",
 }
 
-# ensure output directories exist
-for comp in COMPANY_MAP.values():
-    (INTERIM_DIR / comp / "json").mkdir(parents=True, exist_ok=True)
-    (INTERIM_DIR / comp / "csv").mkdir(parents=True, exist_ok=True)
-    # also prepare a 'txt' folder for raw P&L text
-    (INTERIM_DIR / comp / "txt").mkdir(parents=True, exist_ok=True)
+# ensure output dirs exist
+for slug in COMPANY_MAP.values():
+    for sub in ("json", "csv", "txt"):
+        (INTERIM_DIR / slug / sub).mkdir(parents=True, exist_ok=True)
 
-# ─────────── helpers ─────────────────
+# ─── Logging Setup ────────────────────────────────────────────────────────────
+def setup_logging() -> None:
+    """Configure root logger to write to console and file."""
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    handlers = [
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler(LOG_DIR / "extract_interim_financials.log", encoding="utf-8"),
+    ]
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)-8s %(message)s",
+        handlers=handlers,
+    )
 
+logger = logging.getLogger(__name__)
+
+# ─── LLM Client ──────────────────────────────────────────────────────────────
 def llm_client() -> Any:
+    """
+    Initialize ChatOpenAI or AzureChatOpenAI using OPENAI_EMBEDDING_KEY.
+    """
+    embed_key = os.getenv("OPENAI_EMBEDDING_KEY") or os.getenv("openai_embedding_key")
+    if not embed_key:
+        logger.error("Missing OPENAI_EMBEDDING_KEY in environment")
+        raise RuntimeError("Missing OPENAI_EMBEDDING_KEY")
+
     common = {"temperature": 0}
-    if os.getenv("OPENAI_API_BASE"):  # Azure
+    if os.getenv("OPENAI_API_BASE"):
         client = AzureChatOpenAI(
-            azure_endpoint     = os.getenv("OPENAI_API_BASE"),
-            openai_api_version = os.getenv("OPENAI_API_VERSION", "2024-02-01"),
-            azure_deployment   = os.getenv("OPENAI_MODEL", "gpt-4o"),
+            azure_endpoint=os.getenv("OPENAI_API_BASE"),
+            azure_api_key=embed_key,
+            azure_deployment=os.getenv("OPENAI_MODEL", "gpt-4o"),
+            openai_api_version=os.getenv("OPENAI_API_VERSION", "2024-02-01"),
             **common,
         )
     else:
         client = ChatOpenAI(
             model_name=os.getenv("OPENAI_MODEL", "gpt-4o"),
+            openai_api_key=embed_key,
             **common,
         )
-    logging.info("LLM client initialized (%s)", client.__class__.__name__)
+
+    logger.info("Initialized LLM client: %s", client.__class__.__name__)
     return client
 
+# ─── Prompt Loader ───────────────────────────────────────────────────────────
 def read_prompt() -> Template:
-    if not PROMPT_FILE.exists():
-        raise FileNotFoundError(f"Prompt missing: {PROMPT_FILE}")
-    return Template(PROMPT_FILE.read_text(encoding="utf-8"))
+    """Read and return the Jinja2 prompt template."""
+    text = PROMPT_FILE.read_text(encoding="utf-8")
+    return Template(text)
 
-def find_pnl_pages(path: Path) -> List[str]:
-    """
-    Locate Group/Consolidated Income Statement pages.
-    Fallback to full document if none found in first MAX_PAGES.
-    """
-    with pdfplumber.open(path) as pdf:
-        heads = pdf.pages[:MAX_PAGES]
-        matched: List[str] = []
-        for pg in heads:
-            txt = pg.extract_text() or ""
-            if any(phrase in txt for phrase in (
-                "Consolidated Income Statement",
-                "STATEMENT OF PROFIT OR LOSS",
-                "Group Profit or Loss",
-            )):
-                matched.append(txt)
-        if matched:
-            logging.info("Found %d P&L page(s) in %s", len(matched), path.name)
-            return matched
+# ─── PDF Snipping ────────────────────────────────────────────────────────────
+def find_pnl_pages(pdf_path: Path) -> str:
+    """Extract raw text from up to the first few pages for P&L detection."""
+    with pdfplumber.open(pdf_path) as pdf:
+        pages = pdf.pages[:8]
+        return "\n".join(p.extract_text() or "" for p in pages)
 
-        # fallback to full doc
-        logging.warning(
-            "P&L heading not found in first %d pages of %s; using full document",
-            MAX_PAGES, path.name
-        )
-        return [pg.extract_text() or "" for pg in pdf.pages]
-
-def pdf_text(path: Path) -> str:
-    pages = find_pnl_pages(path)
-    return "\n".join(pages)
-
+# ─── LLM Extraction ──────────────────────────────────────────────────────────
 def ask_llm(
     tmpl: Template,
-    content: str,
+    header_text: str,
+    snippet: str,
     example: Dict[str, Any],
     client: Any,
-    pdf_path: Path,
+    pdf_name: str,
 ) -> Dict[str, Any]:
+    """
+    Send Jinja2-rendered prompt to LLM, parse JSON response,
+    fallback to safe eval if JSON loads fails.
+    """
     prompt = tmpl.render(
-        content=content,
+        header_text=header_text,
+        content=snippet,
         example_output_format=json.dumps(example, indent=2),
     )
-    logging.info("Sending prompt to LLM for %s", pdf_path.name)
-    try:
-        resp = getattr(client, "invoke", client)(
-            [HumanMessage(content=prompt)],
-            timeout=LLM_TIMEOUT,
-        )
-    except Exception as e:
-        logging.error("LLM call failed for %s: %s", pdf_path.name, e)
-        return {
-            "company": pdf_path.parent.name,
-            "symbol": "",
-            "error": f"LLM call failed: {e}"
-        }
-
+    resp = getattr(client, "invoke", client)(
+        [HumanMessage(content=prompt)], timeout=LLM_TIMEOUT
+    )
     raw = getattr(resp, "content", str(resp)).strip()
-    logging.info("Received LLM response for %s", pdf_path.name)
+
+    # extract {...}
+    start, end = raw.find("{"), raw.rfind("}")
+    body = raw[start : end + 1] if start != -1 and end != -1 else raw
 
     try:
-        start, end = raw.find("{"), raw.rfind("}")
-        body = raw[start : end+1] if start != -1 and end != -1 else raw
         return json.loads(body)
-    except Exception as e:
-        logging.error("Failed to parse JSON for %s: %s", pdf_path.name, e)
-        return {
-            "company": pdf_path.parent.name,
-            "symbol": "",
-            "raw_output": raw,
-            "parse_error": str(e),
-        }
-
-def company_from_path(pdf_path: Path) -> str:
-    """ Derive the interim folder name from the Raw subfolder """
-    return pdf_path.parent.name.strip()
-
-def write_outputs(rec: Dict[str, Any], pdf_path: Path) -> None:
-    llm_symbol  = str(rec.get("symbol") or "").strip()
-    llm_company = str(rec.get("company") or "").strip()
-    path_company = company_from_path(pdf_path)
-
-    # pick final company folder
-    company = (
-        COMPANY_MAP.get(llm_symbol)
-        or path_company
-        or llm_company
-        or "Unknown"
-    )
-
-    # JSON & CSV dirs already exist
-    base_json = INTERIM_DIR / company / "json"
-    base_csv  = INTERIM_DIR / company / "csv"
-
-    # write JSON
-    json_path = base_json / f"{pdf_path.stem}.json"
-    json_path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-    logging.info("JSON saved → %s", json_path.relative_to(ROOT))
-
-    # append CSV
-    csv_path = base_csv / "pnl.csv"
-    pd.DataFrame([rec]).to_csv(
-        csv_path,
-        mode="a",
-        header=not csv_path.exists(),
-        index=False
-    )
-    logging.info("Row appended → %s", csv_path.relative_to(ROOT))
-
-def main():
-    client = llm_client()
-    tmpl   = read_prompt()
-
-    example = {
-        "company":            "<COMPANY NAME>",
-        "symbol":             "<TICKER>",
-        "fiscal_year":        "YYYY/YY",
-        "quarter":            "Q1",
-        "period_end_date":    "YYYY-MM-DD",
-        "currency":           "LKR",
-        "unit_multiplier":    1000,
-        "revenue":            0,
-        "cogs":               0,
-        "gross_profit":       0,
-        "operating_expenses": 0,
-        "operating_income":   0,
-        "net_income":         0,
-    }
-
-    count = 0
-    total = 0
-
-    for pdf_path in RAW_DIR.rglob("*.pdf"):
-        total += 1
-        logging.info("--- Processing %s ---", pdf_path.relative_to(ROOT))
-
-        # 1) extract just the P&L text
-        text = pdf_text(pdf_path)
-
-        # 2) save raw text to INTERIM/.../txt
-        folder = company_from_path(pdf_path)
-        txt_dir = INTERIM_DIR / folder / "txt"
-        txt_dir.mkdir(parents=True, exist_ok=True)
-        (txt_dir / f"{pdf_path.stem}.txt").write_text(text, encoding="utf-8")
-        logging.info("Raw text saved → %s", (txt_dir / f"{pdf_path.stem}.txt").relative_to(ROOT))
-
-        # 3) ask the LLM to parse those numbers
-        record = ask_llm(tmpl, text, example, client, pdf_path)
-
-        # 4) sanity‐check
+    except Exception:
+        safe = body.replace("null", "None")
         try:
-            rev  = float(record.get("revenue", 0))
-            cogs = float(record.get("cogs", 0))
-            gp   = float(record.get("gross_profit", 0))
-            if abs(rev - cogs - gp) > 1:
-                logging.warning(
-                    "Inconsistency in GP for %s: rev %.0f – cogs %.0f != gp %.0f",
-                    pdf_path.name, rev, cogs, gp
-                )
+            rec = eval(safe, {"__builtins__": None}, {})
+            if isinstance(rec, dict):
+                return rec
         except Exception:
             pass
 
-        # 5) write JSON+CSV
-        write_outputs(record, pdf_path)
-        count += 1
+    logger.error("Bad JSON from LLM for %s: %s", pdf_name, raw)
+    return {"parse_error": "bad_json", "raw": raw}
 
-    logging.info("Done: wrote %d/%d PDFs → JSON+CSV+TXT under Data/Interim", count, total)
+# ─── Output Writers ──────────────────────────────────────────────────────────
+def write_outputs(rec: Dict[str, Any], pdf_path: Path) -> None:
+    """
+    Determine company slug, write JSON file, and append a CSV row.
+    """
+    slug = COMPANY_MAP.get(rec.get("symbol", ""), pdf_path.parent.name)
+
+    # JSON
+    out_json = INTERIM_DIR / slug / "json" / f"{pdf_path.stem}.json"
+    out_json.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+    logger.info("Wrote JSON → %s", out_json.relative_to(PROJECT_ROOT))
+
+    # CSV
+    out_csv = INTERIM_DIR / slug / "csv" / "pnl.csv"
+    columns = [
+        "company", "symbol", "fiscal_year", "quarter", "period_end_date",
+        "currency", "unit_multiplier", "revenue", "cogs", "gross_profit",
+        "operating_expenses", "operating_income", "net_income", "ytd_qtr_fixed",
+    ]
+    row = {col: rec.get(col, "") for col in columns}
+    pd.DataFrame([row]).to_csv(
+        out_csv, mode="a", header=not out_csv.exists(), index=False, columns=columns
+    )
+    logger.info("Appended CSV → %s", out_csv.relative_to(PROJECT_ROOT))
+
+# ─── Main ────────────────────────────────────────────────────────────────────
+def main() -> None:
+    """Orchestrate the full extraction pipeline over all raw PDFs."""
+    setup_logging()
+    load_dotenv()
+    logger.info("Starting interim financial extraction")
+
+    example_schema = {
+        "company": "<COMPANY NAME>",
+        "symbol": "<TICKER>",
+        "fiscal_year": "YYYY/YY",
+        "quarter": "Q1",
+        "period_end_date": "YYYY-MM-DD",
+        "currency": "LKR",
+        "unit_multiplier": 1000,
+        "revenue": 0,
+        "cogs": 0,
+        "gross_profit": 0,
+        "operating_expenses": 0,
+        "operating_income": 0,
+        "net_income": 0,
+    }
+
+    client = llm_client()
+    tmpl = read_prompt()
+
+    total = succeeded = 0
+    for pdf_path in RAW_DIR.rglob("*.pdf"):
+        total += 1
+        logger.info("Processing %s", pdf_path.relative_to(PROJECT_ROOT))
+
+        full_text = find_pnl_pages(pdf_path)
+        snippet, header = extract_qtr_snippet(full_text)
+
+        # dump raw snippet
+        txt_out = INTERIM_DIR / pdf_path.parent.name / "txt" / f"{pdf_path.stem}.txt"
+        txt_out.write_text(snippet, encoding="utf-8")
+
+        rec = ask_llm(tmpl, header, snippet, example_schema, client, pdf_path.name)
+        if rec.get("parse_error"):
+            logger.error("Skipping %s due to parse_error", pdf_path.name)
+            continue
+
+        post_validate(rec, pdf_path)
+        write_outputs(rec, pdf_path)
+        succeeded += 1
+
+    logger.info("Done: %d/%d PDFs extracted", succeeded, total)
+
 
 if __name__ == "__main__":
     main()
