@@ -1,27 +1,16 @@
-.metric-card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  text-align: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+.metric-card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--card-shadow);
+  padding:1.25rem 1.5rem;
 }
-
-.metric-title {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 0.35rem;
+.metric-title{font-size:.85rem;color:#7c889a;margin-bottom:.35rem;}
+.metric-value{
+  font-size:1.9rem;font-weight:700;color:#273142;
+  display:flex;align-items:baseline;gap:.5rem;
 }
-
-.metric-value {
-  font-size: 1.45rem;       /* bigger / bolder */
-  font-weight: 700;
-  color: var(--text-main);
+.metric-delta{
+  font-size:.8rem;font-weight:600;margin-top:.25rem;
 }
-
-.metric-delta {
-  margin-top: 0.25rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.metric-delta.pos { color: #2ca02c; }
-.metric-delta.neg { color: #d62728; }
+.metric-delta.pos{color:#15803d;}   /* green */
+.metric-delta.neg{color:#b91c1c;}   /* red */

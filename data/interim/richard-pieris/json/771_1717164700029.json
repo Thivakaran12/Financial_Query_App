@@ -1,6 +1,6 @@
 {
   "company": "Richard Pieris Exports PLC",
-  "symbol": null,
+  "symbol": "",
   "fiscal_year": "2023/24",
   "quarter": "Q1",
   "period_end_date": "2024-03-31",
@@ -9,7 +9,7 @@
   "revenue": 1486128,
   "cogs": -1123186,
   "gross_profit": 362942,
-  "operating_expenses": -238102,
+  "operating_expenses": -242102,
   "operating_income": 135080,
   "net_income": -69608
 }

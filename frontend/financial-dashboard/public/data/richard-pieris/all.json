@@ -1,7 +1,7 @@
 [
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": null,
+    "symbol": "",
     "fiscal_year": "2021/22",
     "quarter": "Q1",
     "period_end_date": "2021-12-31",
@@ -16,7 +16,7 @@
   },
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": null,
+    "symbol": "",
     "fiscal_year": "2021/22",
     "quarter": "Q1",
     "period_end_date": "2022-03-31",
@@ -25,13 +25,13 @@
     "revenue": 1604137,
     "cogs": -1037979,
     "gross_profit": 566158,
-    "operating_expenses": -410158,
+    "operating_expenses": -411158,
     "operating_income": 169189,
     "net_income": 1033224
   },
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": "",
+    "symbol": null,
     "fiscal_year": "2022/23",
     "quarter": "Q1",
     "period_end_date": "2022-06-30",
@@ -40,13 +40,13 @@
     "revenue": 2767931,
     "cogs": -1735091,
     "gross_profit": 1032840,
-    "operating_expenses": -580826,
-    "operating_income": 452814,
+    "operating_expenses": -580825,
+    "operating_income": 452515,
     "net_income": 991673
   },
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": "RPEL",
+    "symbol": null,
     "fiscal_year": "2022/23",
     "quarter": "Q1",
     "period_end_date": "2022-09-30",
@@ -61,7 +61,7 @@
   },
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": null,
+    "symbol": "RPEL",
     "fiscal_year": "2022/23",
     "quarter": "Q1",
     "period_end_date": "2022-12-31",
@@ -77,7 +77,7 @@
   {
     "company": "Richard Pieris Exports PLC",
     "symbol": null,
-    "fiscal_year": "2023/24",
+    "fiscal_year": "2022/23",
     "quarter": "Q1",
     "period_end_date": "2023-03-31",
     "currency": "LKR",
@@ -117,7 +117,7 @@
     "gross_profit": 408055,
     "operating_expenses": -305416,
     "operating_income": 113159,
-    "net_income": 175867
+    "net_income": 175852
   },
   {
     "company": "Richard Pieris Exports PLC",
@@ -175,13 +175,13 @@
     "revenue": 2139733,
     "cogs": -1707131,
     "gross_profit": 426602,
-    "operating_expenses": -440113,
-    "operating_income": -13411,
+    "operating_expenses": -440,
+    "operating_income": 113159,
     "net_income": -53830
   },
   {
     "company": "Richard Pieris Exports PLC",
-    "symbol": null,
+    "symbol": "",
     "fiscal_year": "2024/25",
     "quarter": "Q1",
     "period_end_date": "2024-12-31",
@@ -192,6 +192,6 @@
     "gross_profit": 334298,
     "operating_expenses": -366856,
     "operating_income": -26507,
-    "net_income": -53988
+    "net_income": -53970
   }
 ]

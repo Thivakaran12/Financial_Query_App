@@ -2,14 +2,14 @@
   "company": "DIPPED PRODUCTS PLC",
   "symbol": null,
   "fiscal_year": "2021/22",
-  "quarter": "Q2",
+  "quarter": "Q1",
   "period_end_date": "2021-12-31",
   "currency": "LKR",
   "unit_multiplier": 1000,
   "revenue": 12730290,
   "cogs": -10421358,
   "gross_profit": 2308932,
-  "operating_expenses": -1210000,
-  "operating_income": 1169932,
-  "net_income": 927179
+  "operating_expenses": -1217334,
+  "operating_income": 1090598,
+  "net_income": 1116993
 }

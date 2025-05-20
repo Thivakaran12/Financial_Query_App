@@ -3,7 +3,7 @@
     "company": "DIPPED PRODUCTS PLC",
     "symbol": null,
     "fiscal_year": "2021/22",
-    "quarter": "Q2",
+    "quarter": "Q1",
     "period_end_date": "2021-12-31",
     "currency": "LKR",
     "unit_multiplier": 1000,
@@ -25,8 +25,8 @@
     "revenue": 12550,
     "cogs": -10174,
     "gross_profit": 2376,
-    "operating_expenses": -1911,
-    "operating_income": 465,
+    "operating_expenses": -1813,
+    "operating_income": 563,
     "net_income": 3011
   },
   {
@@ -48,16 +48,16 @@
     "company": "DIPPED PRODUCTS PLC",
     "symbol": null,
     "fiscal_year": "2022/23",
-    "quarter": "Q2",
+    "quarter": "Q1",
     "period_end_date": "2022-09-30",
     "currency": "LKR",
     "unit_multiplier": 1000,
-    "revenue": 1994058,
-    "cogs": -31989523,
-    "gross_profit": 1004535,
-    "operating_expenses": -1851685,
-    "operating_income": 819850,
-    "net_income": 6079948
+    "revenue": 21263,
+    "cogs": -16615,
+    "gross_profit": 4649,
+    "operating_expenses": -1838,
+    "operating_income": 2811,
+    "net_income": 1827
   },
   {
     "company": "DIPPED PRODUCTS PLC",
@@ -70,8 +70,8 @@
     "revenue": 61581013,
     "cogs": -47318492,
     "gross_profit": 14262521,
-    "operating_expenses": -4200000,
-    "operating_income": 10000000,
+    "operating_expenses": -4081862,
+    "operating_income": 10180659,
     "net_income": 7001987
   },
   {
@@ -85,8 +85,8 @@
     "revenue": 18518,
     "cogs": -13172,
     "gross_profit": 5347,
-    "operating_expenses": -3137,
-    "operating_income": 2210,
+    "operating_expenses": -3130,
+    "operating_income": 2217,
     "net_income": 1500
   },
   {
@@ -100,8 +100,8 @@
     "revenue": 18551212,
     "cogs": -15084368,
     "gross_profit": 3466844,
-    "operating_expenses": -348559,
-    "operating_income": 3118285,
+    "operating_expenses": -2340752,
+    "operating_income": 112676,
     "net_income": 719991
   },
   {
@@ -114,9 +114,9 @@
     "unit_multiplier": 1000,
     "revenue": 18272,
     "cogs": -14039,
-    "gross_profit": 4234,
-    "operating_expenses": -744,
-    "operating_income": 3490,
+    "gross_profit": 4233,
+    "operating_expenses": -2870,
+    "operating_income": 1363,
     "net_income": 1143
   },
   {
@@ -130,8 +130,8 @@
     "revenue": 18041,
     "cogs": -14176,
     "gross_profit": 3866,
-    "operating_expenses": -2658,
-    "operating_income": 1208,
+    "operating_expenses": -2643,
+    "operating_income": 1223,
     "net_income": 916
   },
   {
@@ -160,8 +160,8 @@
     "revenue": 19186326,
     "cogs": -15665738,
     "gross_profit": 3520588,
-    "operating_expenses": -2059343,
-    "operating_income": 1461245,
+    "operating_expenses": -2591062,
+    "operating_income": 929526,
     "net_income": 812512
   },
   {
@@ -175,8 +175,8 @@
     "revenue": 40463469,
     "cogs": -32303881,
     "gross_profit": 8159588,
-    "operating_expenses": -525350,
-    "operating_income": 4134238,
+    "operating_expenses": -5170074,
+    "operating_income": 2989514,
     "net_income": 2119244
   },
   {

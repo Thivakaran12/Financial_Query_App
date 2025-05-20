@@ -152,6 +152,12 @@ def main() -> None:
 
         # Repair and clean
         cleaned: List[Dict[str, Any]] = [repair_record(rec) for rec in records]
+        # ─── Derive quarter number from the ISO date ────────────────────────────────────
+        for rec in cleaned:
+            if rec.get("period_end_date"):
+                month = int(rec["period_end_date"].split("-")[1])
+                rec["quarter"] = f"Q{((month - 1) // 3) + 1}"
+
 
         # Write out
         out_dir = DST_ROOT / slug

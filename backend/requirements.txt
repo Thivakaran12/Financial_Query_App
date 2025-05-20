@@ -1,0 +1,25 @@
+# ── core LLM stack ───────────────────────────
+# --- core LLM stack ---
+langchain==0.2.9
+langchain-community==0.2.9
+langchain-text-splitters==0.2.8
+langchain_openai
+
+
+# ── vector-store client only ────────────────
+chromadb[client]==0.4.24
+
+# ── numeric compatibility ───────────────────
+numpy<2.0                  # keep NumPy 1.26 until chromadb ≥0.5
+
+# ── utilities ───────────────────────────────
+python-dotenv==1.0.0
+tiktoken~=0.9
+pydantic>=2.7,<3
+pandas==2.2.3
+pdfplumber==0.11.6
+PyPDF2==3.0.1
+
+# ── web stack ───────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.29.0

@@ -1,40 +1,43 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
-import Dashboard from './components/Dashboard';  // ← new polished dashboard
-import ChatPage  from './components/ChatPage';   // ← existing full-screen chat
+import Layout     from './components/Layout';
+import Dashboard  from './components/Dashboard';
+import ChatPage   from './components/ChatPage';
 
-/* global styles & palette -------------------------------------------------- */
+/* global styles & palette */
 import './theme.css';
 import './App.css';
 
 /* ------------------------------------------------------------------------- */
-/* A thin wrapper that pulls ?company=… from the URL and passes it down.     */
+/* ChatWrapper pulls ?company=… from URL and passes it to ChatPage           */
 /* ------------------------------------------------------------------------- */
 function ChatWrapper() {
-  const query        = new URLSearchParams(window.location.search);
-  const companySlug  = query.get('company') || 'dipped-products';
-  const navigateBack = useNavigate();          // used for the close button
+  const query       = new URLSearchParams(window.location.search);
+  const companySlug = query.get('company') || 'dipped-products';
+  const navigate    = useNavigate();
 
   return (
     <ChatPage
       companySlug={companySlug}
-      onClose={() => navigateBack(-1)}          // go back to previous page
+      onClose={() => navigate(-1)}  // go back
     />
   );
 }
 
 /* ------------------------------------------------------------------------- */
-/* App – top-level router                                                    */
+/* App – top‐level router wrapped in our new Layout                           */
 /* ------------------------------------------------------------------------- */
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/chat" element={<ChatWrapper />} />
-        <Route path="/*"    element={<Dashboard   />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/"    element={<Dashboard />} />
+          <Route path="/chat" element={<ChatWrapper />} />
+          {/* add more routes here if needed */}
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }

@@ -4,10 +4,10 @@ extract_interim_financials.py
 
 Extract & structure quarterly P&L tables from raw CSE PDFs via an LLM.
 
-– Snip only the “03 months to …” table
-– Inject its exact header into the Jinja2 prompt
-– Post-validate & auto-fix YTD→QTR mismatches
-– Output per-PDF JSON and append to a per-company CSV
+Snip only the “03 months to …” table
+Inject its exact header into the Jinja2 prompt
+Post-validate & auto-fix YTD→QTR mismatches
+Output per-PDF JSON and append to a per-company CSV
 """
 
 import json

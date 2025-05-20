@@ -1,106 +1,115 @@
 .chat-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: var(--bg-light);
+  height: 100%;
+  background: var(--light-gray);
 }
 
+/* ─── Header ─── */
 .chat-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  background: #fff;
   border-bottom: 1px solid var(--border);
 }
-
 .chat-header h2 {
   font-size: 1.5rem;
-  color: var(--brand-blue);
-  margin: 0;
+  font-weight: 700;
+  color: var(--brand-navy);
 }
-
 .close-btn {
   background: none;
   border: none;
   font-size: 1.5rem;
+  color: var(--dark-gray);
   cursor: pointer;
-  color: var(--text-muted);
 }
 
-/* suggestion pills */
+/* ─── Suggestions ─── */
 .suggestions {
   display: flex;
-  flex-wrap: wrap;
+  overflow-x: auto;
   gap: 0.5rem;
-  padding: 0.5rem 2rem;
-  background: var(--card-bg);
+  padding: 0.75rem 1.5rem;
+  background: #fff;
   border-bottom: 1px solid var(--border);
 }
+.suggestions::-webkit-scrollbar {
+  height: 6px;
+}
+.suggestions::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
 
-.suggestion-pill {
-  background: var(--brand-blue-light);
-  color: #fff;
-  border: none;
+.suggestion-chip {
+  flex: 0 0 auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 0.4rem 0.75rem;
-  font-size: 0.85rem;
+  color: var(--brand-navy);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-
-.suggestion-pill:hover:not(:disabled) {
-  background: var(--brand-blue);
+.suggestion-chip:hover:not(:disabled) {
+  background: var(--brand-navy);
+  color: #fff;
+  border-color: var(--brand-navy);
 }
-
-.suggestion-pill:disabled {
+.suggestion-chip:disabled {
   opacity: 0.6;
   cursor: default;
 }
 
+/* ─── Chat Body ─── */
 .chat-body {
   flex: 1;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  background: #fff;
 }
-
 .chat-message {
   max-width: 70%;
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
   line-height: 1.4;
 }
-
 .from-user {
   align-self: flex-end;
-  background: var(--user-bubble);
+  background: var(--brand-navy);
   color: #fff;
 }
-
 .from-bot {
   align-self: flex-start;
-  background: var(--bot-bubble);
+  background: var(--light-gray);
+  color: var(--dark-gray);
   border: 1px solid var(--border);
-  color: var(--text-main);
 }
 
+/* ─── Error ─── */
 .chat-error {
-  color: #900;
   text-align: center;
-  margin-top: 1rem;
+  color: #900;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
 }
 
+/* ─── Footer (always at bottom) ─── */
 .chat-footer {
   display: flex;
   align-items: center;
-  padding: 1rem 2rem;
-  background: var(--card-bg);
+  padding: 1rem 1.5rem;
+  background: #fff;
   border-top: 1px solid var(--border);
 }
-
 .chat-input {
   flex: 1;
   resize: none;
@@ -111,23 +120,17 @@
   margin-right: 1rem;
   min-height: 3rem;
 }
-
 .send-btn {
-  background: var(--brand-blue);
+  background: var(--brand-navy);
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius);
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
-
 .send-btn:disabled {
   opacity: 0.6;
   cursor: default;
-}
-.suggestion-pill {
-  max-width: 220px;          /* wrap sooner */
-  white-space: normal;
-  text-align: left;
 }

@@ -1,0 +1,123 @@
+/* ─── CSS custom-properties & resets ─────────────────────────────── */
+:root {
+  --brand-navy:  #101722;
+  --brand-green: #ffffff;   /* active link text colour (white)   */
+  --light-gray:  #f0f2f5;   /* hover bg on links                 */
+  --dark-gray:   #8a8f9a;   /* normal text colour                */
+  --scroll-bg:   #101722;   /* scroll‐track colour               */
+  --scroll-thumb:#424a58;   /* scroll‐thumb colour               */
+  --radius:      0.75rem;
+  --font:        'Segoe UI', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+}
+
+/* ─── Overall two-column layout ──────────────────────────────────── */
+.app-grid {
+  display: grid;
+  grid-template-columns: 270px 1fr;   /* sidebar / main */
+  height: 100vh;
+  overflow: hidden;                   /* hide the outer scroll */
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────────── */
+.sidebar {
+  background: var(--brand-navy);
+  color: #fff;
+  padding: 1.5rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;      /* allow scrolling if content is tall */
+}
+
+/* custom scrollbar for WebKit */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: var(--scroll-bg);
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: var(--radius);
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: darken(var(--scroll-thumb),10%);
+}
+
+/* Firefox scrollbar */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-bg);
+}
+
+.sidebar-logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 2.5rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.nav-item {
+  display: block;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius);
+  color: var(--dark-gray);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-item:hover {
+  background: var(--light-gray);
+  color: var(--brand-navy);
+}
+.nav-item.active {
+  background: #2f3542;
+  color: var(--brand-green);
+}
+
+/* ─── Main panel ─────────────────────────────────────────────────── */
+.main {
+  display: flex;
+  flex-direction: column;
+  background: #f5f7fb;
+
+  overflow: hidden;      /* contain inner scroll */
+}
+
+/* now scroll only the .content section */
+.content {
+  padding: 1.5rem 2rem 2rem;
+  overflow-y: auto;
+}
+
+/* same styled scrollbar in main content */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+.content::-webkit-scrollbar-track {
+  background: var(--scroll-bg);
+}
+.content::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb);
+  border-radius: var(--radius);
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: darken(var(--scroll-thumb),10%);
+}
+.content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-bg);
+}

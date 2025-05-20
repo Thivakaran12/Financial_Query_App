@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  chroma:
+    image: ghcr.io/chroma-core/chroma:0.4.24      # ← real tag, no “v”
+    container_name: chroma
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./backend/data/index:/data
+    environment:
+      IS_PERSISTENT: "TRUE"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - chroma
+    environment:
+      CHROMA_HOST: chroma           # service name of vector DB
+      CHROMA_PORT: 8000
+      OPENAI_API_KEY: ${OPENAI_EMBEDDING_KEY}
+    volumes:
+      - ./backend/data/index:/data
+    command: >
+      uvicorn app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend/financial-dashboard
+    container_name: frontend
+    depends_on:
+      - backend
+    environment:
+      REACT_APP_API_URL: http://backend:8000
+    ports:
+      - "3000:80"
+
+networks:
+  default:
+    name: financial_query_app_network

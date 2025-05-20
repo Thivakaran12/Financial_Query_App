@@ -1,98 +1,113 @@
-/* overall layout */
+:root {
+  --brand-navy:    #101722;
+  --light-gray:    #f0f2f5;
+  --dark-gray:     #585f6a;
+  --radius:        0.75rem;
+}
+
+/* —— Dashboard Container —— */
 .dashboard {
-  width: 100%;
-  padding: 2rem 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  padding: 2rem;
+  background: #f5f7fb;
+  min-height: 100vh;
 }
 
-/* main title */
-.title-h1 {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--brand-blue);
-  margin: 0;
+/* —— Page Title —— */
+.page-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #273142;
+  margin-bottom: 1.25rem;
 }
 
-/* filters row */
+/* —— Filters Row —— */
 .filters-row {
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin-bottom: 1.5rem;
+}
+/* Match DatePicker height to EntitySelector */
+.filters-row .react-datepicker__input-container input {
+  height: 40px;
+  border: 1px solid var(--brand-navy);
+  border-radius: var(--radius);
+  padding: 0 0.75rem;
+  font-size: 1rem;
 }
 
-/* date pickers */
-.date-picker {
-  display: none; /* we now use inline DatePicker without wrapper */
-}
-
-/* KPI cards */
-.card-row {
+/* —— KPI Cards Grid —— */
+.metrics-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  /* ← key change here: auto-fit fills each row with as many cards as will fit */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
+  margin-bottom: 2.25rem;
 }
 
-/* metric tabs */
+/* —— Metric Toggle Buttons —— */
 .tab-row {
   display: flex;
   gap: 0.75rem;
+  margin-bottom: 1.75rem;
 }
-
 .tab {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid #d5dbe4;
   border-radius: var(--radius);
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   cursor: pointer;
 }
-
 .tab.active {
-  background: var(--brand-blue);
+  background: var(--brand-navy);
   color: #fff;
-  border-color: var(--brand-blue);
+  border-color: var(--brand-navy);
 }
 
-/* 2×3 chart grid */
-.chart-grid {
+/* —— Charts Grid (2×3) —— */
+.charts-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
-/* shared chart-card styling */
+/* —— Chart Card Styling —— */
 .chart-card {
-  background: var(--card-bg);
+  background: #fff;
   border-radius: var(--radius);
-  padding: 1rem 1.5rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.25rem 1.5rem;
 }
-
 .chart-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-/* chat button footer */
-.dashboard-footer {
-  text-align: center;
-}
-
-.agent-btn {
-  background: var(--brand-blue);
-  color: #fff;
-  padding: 1rem 2.5rem;
   font-size: 1.05rem;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  font-weight: 600;
+  color: #273142;
+  margin-bottom: 0.75rem;
 }
 
-.agent-btn:hover {
-  background: #0d1c3d;
+/* —— React-Select Overrides —— */
+.entity__control {
+  border: 1px solid var(--brand-navy) !important;
+  box-shadow: none !important;
+  min-height: 40px;
+}
+.entity__multi-value {
+  background: var(--brand-navy) !important;
+}
+.entity__multi-value__label,
+.entity__multi-value__remove {
+  color: #fff !important;
+}
+.entity__multi-value__remove:hover {
+  background: rgba(255,255,255,0.2) !important;
+}
+
+/* —— Loading & Error States —— */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #585f6a;
+  margin-top: 2rem;
 }
