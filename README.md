@@ -6,7 +6,6 @@ A React dashboard (Vite + Tailwind) lets analysts query the knowledge-base and v
 ## 1. Repository Layout
 
 ```plaintext
-\`\`\`
 FINANCIAL_QUERY_APP/
 ├── .env
 ├── .gitignore
@@ -108,7 +107,7 @@ FINANCIAL_QUERY_APP/
 │       └── README.md
 │
 └── venv/
-\`\`\`
+
 
 
 
