@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -5,7 +6,7 @@ import Layout     from './components/Layout';
 import Dashboard  from './components/Dashboard';
 import ChatPage   from './components/ChatPage';
 
-/* global styles & palette */
+// global styles & palette
 import './theme.css';
 import './App.css';
 
@@ -26,7 +27,7 @@ function ChatWrapper() {
 }
 
 /* ------------------------------------------------------------------------- */
-/* App – top‐level router wrapped in our new Layout                           */
+/* App – top-level router wrapped in our new Layout                          */
 /* ------------------------------------------------------------------------- */
 export default function App() {
   return (

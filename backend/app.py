@@ -1,4 +1,12 @@
-# backend/app.py
+"""
+backend.app
+==============
+
+FastAPI application exposing endpoints for querying financial data and chat interface.
+
+This module initializes the FastAPI server, configures CORS, logging, and integrates with
+Chroma vector store and OpenAI LLM for conversational querying.
+"""
 import os
 import sys
 import logging
@@ -10,7 +18,6 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from langchain_openai import OpenAIEmbeddings  
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain.schema import HumanMessage
@@ -41,7 +48,15 @@ app.add_middleware(
 )
 
 # ─── Request / Response Models ───────────────────────────────────────────────
-class ChatRequest(BaseModel):
+class ChatRequest(BaseModel):  # noqa: D101
+    """
+    Request payload for chat endpoint.
+
+    Attributes:
+        company (str): Slug of the company.
+        question (str): User's question text.
+        history (List[Dict[str, Any]]): Conversation history for context.
+    """
     company: str = Field(..., alias="company_slug")
     question: str
     history: List[Dict[str, Any]] = Field(default_factory=list)
@@ -50,7 +65,15 @@ class ChatRequest(BaseModel):
         allow_population_by_field_name = True
         populate_by_name = True
 
-class ChatResponse(BaseModel):
+
+class ChatResponse(BaseModel):  # noqa: D101
+    """
+    Response model for chat endpoint.
+
+    Attributes:
+        answer (str): Generated answer from LLM.
+        sources (List[str]): List of source document identifiers.
+    """
     answer: str
     sources: List[str]
 
@@ -91,13 +114,37 @@ llm = ChatOpenAI(
 logger.info("ChatOpenAI initialized (model=gpt-3.5-turbo)")
 
 # ─── Endpoints ────────────────────────────────────────────────────────────────
-@app.get("/health", tags=["health"])
-def health_check():
+@app.get("/health", tags=["health"])  # noqa: D102
+def health_check():  # noqa: D103
+    """
+    Health check endpoint.
+
+    Returns:
+        dict: Status OK indicator.
+    """
     return {"status": "ok"}
 
-@app.post("/api/chat", response_model=ChatResponse, tags=["chat"])
-def chat(req: ChatRequest):
-    # 1) Vector search + filter by company_slug
+
+@app.post("/api/chat", response_model=ChatResponse, tags=["chat"])  # noqa: D102
+def chat(req: ChatRequest):  # noqa: D103
+    """
+    Chat endpoint: fetches relevant context and generates an LLM response.
+
+    Steps:
+      1. Vector similarity search by company slug.
+      2. Build context from retrieved documents.
+      3. Render full prompt (system + context + user question).
+      4. Invoke LLM and return answer with sources.
+
+    Args:
+        req (ChatRequest): Parsed request payload.
+
+    Raises:
+        HTTPException: On vector search or LLM errors.
+
+    Returns:
+        ChatResponse: Generated answer and document sources.
+    """
     try:
         docs = vectordb.similarity_search(
             req.question,
@@ -110,11 +157,8 @@ def chat(req: ChatRequest):
 
     logger.info("Vector search returned %d docs for %s", len(docs), req.company)
 
-    # 2) Build a single context string
     context = "\n---\n".join(d.page_content for d in docs) or "No relevant context."
 
-    # 3) Render final prompt = system + context + history + user
-    #   (you can also inject `req.history` for multi‐turn chaining)
     full_prompt = "\n\n".join([
         SYSTEM_PROMPT,
         "Context:\n" + context,
@@ -126,12 +170,18 @@ def chat(req: ChatRequest):
         logger.exception("LLM generation failed")
         raise HTTPException(status_code=500, detail="LLM generation failed")
 
-    # 4) Return both answer and source filenames
     sources = [d.metadata.get("source_txt", "unknown") for d in docs]
     return ChatResponse(answer=resp.content, sources=sources)
 
-@app.get("/api/slugs", tags=["metadata"])
-def list_slugs():
+
+@app.get("/api/slugs", tags=["metadata"])  # noqa: D102
+def list_slugs():  # noqa: D103
+    """
+    List all available company slugs in the index.
+
+    Returns:
+        dict: Sorted list of unique company slugs.
+    """
     data = vectordb._collection.get(include=["metadatas"], limit=1000)
     slugs = sorted({m["company_slug"] for m in data["metadatas"]})
     return {"company_slugs": slugs}
