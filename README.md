@@ -5,6 +5,8 @@ A React dashboard (Vite + Tailwind) lets analysts query the knowledge-base and v
 
 ## 1. Repository Layout
 
+```plaintext
+\`\`\`
 FINANCIAL_QUERY_APP/
 ├── .env
 ├── .gitignore
@@ -54,58 +56,59 @@ FINANCIAL_QUERY_APP/
 │       │   ├── index.html
 │       │   ├── manifest.json
 │       │   └── data/
-│       └── src/
-│           ├── components/
-│           │   ├── ChartCard.jsx
-│           │   ├── ChartCard.css
-│           │   ├── ChatModal.jsx
-│           │   ├── ChatModal.css
-│           │   ├── ChatPage.jsx
-│           │   ├── ChatPage.css
-│           │   ├── CompanySelector.jsx
-│           │   ├── CompanySelector.css
-│           │   ├── ComparisonChart.jsx
-│           │   ├── Dashboard.jsx
-│           │   ├── Dashboard.css
-│           │   ├── DateRangePicker.jsx
-│           │   ├── DateRangePicker.css
-│           │   ├── EntitySelector.jsx
-│           │   ├── EntitySelector.css
-│           │   ├── ExpenseBarChart.jsx
-│           │   ├── GrossMarginChart.jsx
-│           │   ├── InfoCard.jsx
-│           │   ├── InfoCard.css
-│           │   ├── MarginHeatmap.jsx
-│           │   ├── MarginHeatmap.css
-│           │   ├── MarginTrendChart.jsx
-│           │   ├── MetricCard.jsx
-│           │   ├── MetricCard.css
-│           │   ├── NavBar.jsx
-│           │   ├── NavBar.css
-│           │   ├── NetMarginChart.jsx
-│           │   ├── PnLChart.jsx
-│           │   ├── PnLChart.css
-│           │   ├── QoQGrowthChart.jsx
-│           │   ├── RevenuePieChart.jsx
-│           │   ├── SharePieChart.jsx
-│           │   ├── TimeSeriesChart.jsx
-│           │   └── TTMNetIncomeChart.jsx
-│           ├── services/
-│           │   ├── chatApi.js
-│           │   └── financialApi.js
-│           ├── App.jsx
-│           ├── App.css
-│           ├── index.js
-│           ├── index.css
-│           ├── logo.svg
-│           ├── setupProxy.js
-│           ├── reportWebVitals.js
-│           └── theme.css
+│       ├── src/
+│       │   ├── components/
+│       │   │   ├── ChartCard.jsx
+│       │   │   ├── ChartCard.css
+│       │   │   ├── ChatModal.jsx
+│       │   │   ├── ChatModal.css
+│       │   │   ├── ChatPage.jsx
+│       │   │   ├── ChatPage.css
+│       │   │   ├── CompanySelector.jsx
+│       │   │   ├── CompanySelector.css
+│       │   │   ├── ComparisonChart.jsx
+│       │   │   ├── Dashboard.jsx
+│       │   │   ├── Dashboard.css
+│       │   │   ├── DateRangePicker.jsx
+│       │   │   ├── DateRangePicker.css
+│       │   │   ├── EntitySelector.jsx
+│       │   │   ├── EntitySelector.css
+│       │   │   ├── ExpenseBarChart.jsx
+│       │   │   ├── GrossMarginChart.jsx
+│       │   │   ├── InfoCard.jsx
+│       │   │   ├── InfoCard.css
+│       │   │   ├── MarginHeatmap.jsx
+│       │   │   ├── MarginHeatmap.css
+│       │   │   ├── MarginTrendChart.jsx
+│       │   │   ├── MetricCard.jsx
+│       │   │   ├── MetricCard.css
+│       │   │   ├── NavBar.jsx
+│       │   │   ├── NavBar.css
+│       │   │   ├── NetMarginChart.jsx
+│       │   │   ├── PnLChart.jsx
+│       │   │   ├── PnLChart.css
+│       │   │   ├── QoQGrowthChart.jsx
+│       │   │   ├── RevenuePieChart.jsx
+│       │   │   ├── SharePieChart.jsx
+│       │   │   ├── TimeSeriesChart.jsx
+│       │   │   └── TTMNetIncomeChart.jsx
+│       │   ├── services/
+│       │   │   ├── chatApi.js
+│       │   │   └── financialApi.js
+│       │   ├── App.jsx
+│       │   ├── App.css
+│       │   ├── index.js
+│       │   ├── index.css
+│       │   ├── logo.svg
+│       │   ├── setupProxy.js
+│       │   ├── reportWebVitals.js
+│       │   └── theme.css
 │       ├── package.json
 │       ├── package-lock.json
 │       └── README.md
 │
 └── venv/
+\`\`\`
 
 
 
