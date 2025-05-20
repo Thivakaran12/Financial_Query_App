@@ -3,46 +3,42 @@ Financial Query App — Document Q&A & Earnings-Insight Platform
 This project ingests company PDFs (annual & quarterly reports), converts them to clean text, builds a Chroma vector index with OpenAI embeddings, and exposes a FastAPI chat endpoint powered by LangChain.
 A React dashboard (Vite + Tailwind) lets analysts query the knowledge-base and visualise cited passages. All services can run locally with Python or fully containerised with Docker Compose.
 
-1. Repository Layout
+## 1. Repository Layout
 
 FINANCIAL_QUERY_APP/
-├── .env                        
+├── .env
 ├── .gitignore
 ├── docker-compose.yml
 ├── README.md
 │
-├── app.py                     
-├── requirements.txt             
+├── app.py
+├── requirements.txt
 ├── system_prompt.j2
 │
 ├── data/
-│   ├── raw/                     
-│   ├── interim/                 
-│   └── index/                   
+│   ├── raw/
+│   ├── interim/
+│   └── index/
 │
-├── logs/                        
+├── logs/
 │
 ├── backend/
 │   ├── __init__.py
-│   ├── app.py                   
+│   ├── app.py
 │   ├── Dockerfile
-│   ├── requirements.txt        
+│   ├── requirements.txt
 │   ├── system_prompt.j2
-│   │
-│   ├── data/                    
-│   │
+│   ├── data/
 │   ├── scripts/
 │   │   ├── build_index.py
 │   │   ├── merge_jsons.py
 │   │   └── scrape_reports.py
-│   │
 │   ├── src/
 │   │   ├── __init__.py
 │   │   ├── utils.py
 │   │   ├── extract_interim_financials.py
 │   │   └── prompts/
 │   │       └── financial_extraction.j2
-│   │
 │   └── tests/
 │       ├── __init__.py
 │       ├── test_postvalidate.py
@@ -53,55 +49,63 @@ FINANCIAL_QUERY_APP/
 │       ├── Dockerfile
 │       ├── nginx/
 │       │   └── default.conf
-│       │
 │       ├── public/
 │       │   ├── favicon.ico
 │       │   ├── index.html
 │       │   ├── manifest.json
-│       │   └── data/           
-│       │
-│       ├── src/
-│       │   ├── components/
-│       │   │   ├── ChartCard.jsx          
-│       │   │   ├── ChartCard.css          
-│       │   │   ├── ChatModal.{jsx,css}    
-│       │   │   ├── ChatPage.{jsx,css}     
-│       │   │   ├── CompanySelector.{jsx,css}
-│       │   │   ├── ComparisonChart.jsx
-│       │   │   ├── Dashboard.{jsx,css}
-│       │   │   ├── DateRangePicker.{jsx,css}
-│       │   │   ├── EntitySelector.jsx
-│       │   │   ├── ExpenseBarChart.jsx
-│       │   │   ├── GrossMarginChart.jsx
-│       │   │   ├── InfoCard.{jsx,css}
-│       │   │   ├── MarginHeatmap.{jsx,css}
-│       │   │   ├── MarginTrendChart.jsx
-│       │   │   ├── MetricCard.{jsx,css}
-│       │   │   ├── NavBar.{jsx,css}
-│       │   │   ├── NetMarginChart.jsx
-│       │   │   ├── PnLChart.{jsx,css}
-│       │   │   ├── QoQGrowthChart.jsx
-│       │   │   ├── RevenuePieChart.jsx
-│       │   │   ├── SharePieChart.jsx
-│       │   │   ├── TimeSeriesChart.jsx
-│       │   │   └── TTMNetIncomeChart.jsx
-│       │   │
-│       │   ├── services/
-│       │   │   ├── chatApi.js
-│       │   │   └── financialApi.js
-│       │   │
-│       │   ├── App.{jsx,css}
-│       │   ├── index.{js,css}
-│       │   ├── logo.svg
-│       │   ├── setupProxy.js
-│       │   ├── reportWebVitals.js
-│       │   └── theme.css
-│       │
+│       │   └── data/
+│       └── src/
+│           ├── components/
+│           │   ├── ChartCard.jsx
+│           │   ├── ChartCard.css
+│           │   ├── ChatModal.jsx
+│           │   ├── ChatModal.css
+│           │   ├── ChatPage.jsx
+│           │   ├── ChatPage.css
+│           │   ├── CompanySelector.jsx
+│           │   ├── CompanySelector.css
+│           │   ├── ComparisonChart.jsx
+│           │   ├── Dashboard.jsx
+│           │   ├── Dashboard.css
+│           │   ├── DateRangePicker.jsx
+│           │   ├── DateRangePicker.css
+│           │   ├── EntitySelector.jsx
+│           │   ├── EntitySelector.css
+│           │   ├── ExpenseBarChart.jsx
+│           │   ├── GrossMarginChart.jsx
+│           │   ├── InfoCard.jsx
+│           │   ├── InfoCard.css
+│           │   ├── MarginHeatmap.jsx
+│           │   ├── MarginHeatmap.css
+│           │   ├── MarginTrendChart.jsx
+│           │   ├── MetricCard.jsx
+│           │   ├── MetricCard.css
+│           │   ├── NavBar.jsx
+│           │   ├── NavBar.css
+│           │   ├── NetMarginChart.jsx
+│           │   ├── PnLChart.jsx
+│           │   ├── PnLChart.css
+│           │   ├── QoQGrowthChart.jsx
+│           │   ├── RevenuePieChart.jsx
+│           │   ├── SharePieChart.jsx
+│           │   ├── TimeSeriesChart.jsx
+│           │   └── TTMNetIncomeChart.jsx
+│           ├── services/
+│           │   ├── chatApi.js
+│           │   └── financialApi.js
+│           ├── App.jsx
+│           ├── App.css
+│           ├── index.js
+│           ├── index.css
+│           ├── logo.svg
+│           ├── setupProxy.js
+│           ├── reportWebVitals.js
+│           └── theme.css
 │       ├── package.json
 │       ├── package-lock.json
 │       └── README.md
 │
-└── venv/                        
+└── venv/
 
 
 
