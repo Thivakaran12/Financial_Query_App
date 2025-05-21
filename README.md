@@ -1,4 +1,4 @@
-# Financial Query App — Document Q&A & Earnings-Insight Platform
+# CSE - Insights and Query App
 
 This project ingests company PDFs (annual & quarterly reports), converts them to clean text, builds a Chroma vector index with OpenAI embeddings, and exposes a FastAPI chat endpoint powered by LangChain.
 A React dashboard (Vite + Tailwind) lets analysts query the knowledge-base and visualise cited passages. All services can run locally with Python or fully containerised with Docker Compose.
@@ -147,14 +147,7 @@ npm start       # serves on http://localhost:3000 (CRA default) :contentReferenc
 
 
 ## 3. Running Everything with Docker Compose
-
-### 3.1 Build & launch
 docker compose up --build -d            
-[oaicite:7]{index=7}
-
-### 3.2 Tear down
-docker compose down -v
-
 
 ## 4. Configuration Reference (.env)
 | Variable                   | Purpose                        |
@@ -178,15 +171,15 @@ Docker Compose V2 handles multi-service orchestration; version: field deprecated
 
 ## 7. Common Commands
 
-# rebuild index after adding new PDFs
+#### rebuild index after adding new PDFs
 python backend/scripts/build_index.py
 
-# health-check OpenAI creds
+####  health-check OpenAI creds
 python backend/scripts/test.py
 
-# live backend reload during dev
+####  live backend reload during dev
 uvicorn backend.app:app --reload
 
-# clear & vacuum Chroma
+#### clear & vacuum Chroma
 docker exec -it chroma chroma utils vacuum
 
