@@ -77,13 +77,13 @@ def llm_client() -> Any:
         client = AzureChatOpenAI(
             azure_endpoint=os.getenv("OPENAI_API_BASE"),
             azure_api_key=embed_key,
-            azure_deployment=os.getenv("OPENAI_MODEL", "gpt-4o"),
-            openai_api_version=os.getenv("OPENAI_API_VERSION", "2024-02-01"),
+            azure_deployment=os.getenv("OPENAI_MODEL"),
+            openai_api_version=os.getenv("OPENAI_API_VERSION"),
             **common,
         )
     else:
         client = ChatOpenAI(
-            model_name=os.getenv("OPENAI_MODEL", "gpt-4o"),
+            model_name=os.getenv("OPENAI_MODEL"),
             openai_api_key=embed_key,
             **common,
         )

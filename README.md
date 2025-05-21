@@ -1,4 +1,4 @@
-Financial Query App — Document Q&A & Earnings-Insight Platform
+# Financial Query App — Document Q&A & Earnings-Insight Platform
 
 This project ingests company PDFs (annual & quarterly reports), converts them to clean text, builds a Chroma vector index with OpenAI embeddings, and exposes a FastAPI chat endpoint powered by LangChain.
 A React dashboard (Vite + Tailwind) lets analysts query the knowledge-base and visualise cited passages. All services can run locally with Python or fully containerised with Docker Compose.
@@ -12,9 +12,6 @@ FINANCIAL_QUERY_APP/
 ├── docker-compose.yml
 ├── README.md
 │
-├── app.py
-├── requirements.txt
-├── system_prompt.j2
 │
 ├── data/
 │   ├── raw/
@@ -28,8 +25,8 @@ FINANCIAL_QUERY_APP/
 │   ├── app.py
 │   ├── Dockerfile
 │   ├── requirements.txt
-│   ├── system_prompt.j2
-│   ├── data/
+│   │── prompts/
+│   │    ├── system_prompt.j2
 │   ├── scripts/
 │   │   ├── build_index.py
 │   │   ├── merge_jsons.py
@@ -100,31 +97,32 @@ FINANCIAL_QUERY_APP/
 │       │   ├── index.css
 │       │   ├── logo.svg
 │       │   ├── setupProxy.js
+├       ├   ├── setupTests.js
 │       │   ├── reportWebVitals.js
 │       │   └── theme.css
 │       ├── package.json
 │       ├── package-lock.json
-│       └── README.md
-│
-└── venv/
+│       
+│ 
+├── logs/
+
+```
 
 
+## 2. Local Setup
 
-
-2. Local Setup
-
-2.1 Clone & create venv
+### 2.1 Clone & create venv
 
 git clone https://github.com/Thivakaran12/Financial_Query_App
 cd financial_query_app
 python -m venv venv             # built-in venv module :contentReference[oaicite:1]{index=1}
 source venv/bin/activate        # PowerShell: .\venv\Scripts\Activate.ps1
 
-2.2 Install backend dependencies
+### 2.2 Install backend dependencies
 
 pip install -r backend/requirements.txt
 
-2.3 Environment variables
+### 2.3 Environment variables
 OPENAI_EMBEDDING_KEY = 
 OPENAI_MODEL=gpt-4o-mini
 OPENAI_API_VERSION=2024-02-15-preview
@@ -133,31 +131,32 @@ GENERATE_SOURCEMAP=false
 REACT_APP_API_URL=http://localhost:8000
 
 
-2.4 Build / refresh the vector index
+### 2.4 Build / refresh the vector index
 
 python backend/scripts/build_index.py
 
 
-2.5 Start the server
+### 2.5 Start the server
 uvicorn backend.app:app --reload --port 8000    # Uvicorn 0.29 :contentReference[oaicite:5]{index=5}
 
-2.6 Run the React dashboard
+### 2.6 Run the React dashboard
 cd frontend/financial-dashboard
 npm install
 npm start       # serves on http://localhost:3000 (CRA default) :contentReference[oaicite:6]{index=6}
 
 
 
-3. Running Everything with Docker Compose
+## 3. Running Everything with Docker Compose
 
-3.1 Build & launch
-docker compose up --build -d            # Compose V2, version key obsolete :contentReference[oaicite:7]{index=7}
+### 3.1 Build & launch
+docker compose up --build -d            
+[oaicite:7]{index=7}
 
-3.2 Tear down
+### 3.2 Tear down
 docker compose down -v
 
 
-4. Configuration Reference (.env)
+## 4. Configuration Reference (.env)
 | Variable                   | Purpose                        |
 | -------------------------- | ------------------------------ |
 | **OPENAI_API_KEY**       | chat completions               |
@@ -166,18 +165,18 @@ docker compose down -v
 | **REACT_APP_API_URL**   | frontend → backend URL         |
 
 
-5. Notebooks & Experiments
+## 5. Notebooks & Experiments
 Exploratory notebooks live under notebooks/; they demonstrate how to query the Chroma store directly and benchmark retrieval + LLM answer quality.
 
 
-6. Tech Stack Versions
+## 6. Tech Stack Versions
 FastAPI 0.111 (2024-04) introduces dependency override helpers 
 LangChain-OpenAI integrates native OpenAI client 
 tiktoken 0.9 for accurate token counting 
 Docker Compose V2 handles multi-service orchestration; version: field deprecated
 
 
-7. Common Commands
+## 7. Common Commands
 
 # rebuild index after adding new PDFs
 python backend/scripts/build_index.py

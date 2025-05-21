@@ -79,11 +79,12 @@ class ChatResponse(BaseModel):  # noqa: D101
 
 # ─── Load system prompt from Jinja2 template ─────────────────────────────────
 tmpl_env = Environment(
-    loader=FileSystemLoader(str(PROJECT_ROOT)),
+    loader=FileSystemLoader(str(PROJECT_ROOT / "prompts")),
     autoescape=select_autoescape([]),
 )
 SYSTEM_PROMPT = tmpl_env.get_template("system_prompt.j2").render()
-logger.info("Loaded system prompt from system_prompt.j2")
+logger.info("Loaded system prompt from backend/prompts/system_prompt.j2")
+
 
 # ─── OpenAI Embeddings & Chroma DB ───────────────────────────────────────────
 EMBED_KEY = os.getenv("OPENAI_EMBEDDING_KEY") or os.getenv("openai_embedding_key")
@@ -92,7 +93,7 @@ if not EMBED_KEY:
     sys.exit(1)
 
 embeddings = OpenAIEmbeddings(
-    model="text-embedding-ada-002",
+    model=os.getenv("OPENAI_EMBEDDING_MODEL"),
     openai_api_key=EMBED_KEY,
 )
 logger.info("OpenAIEmbeddings initialized")
@@ -107,7 +108,7 @@ logger.info("Chroma index loaded from %s", INDEX_DIR)
 # ─── LLM Setup ───────────────────────────────────────────────────────────────
 CHAT_KEY = os.getenv("OPENAI_API_KEY") or EMBED_KEY
 llm = ChatOpenAI(
-    model="gpt-3.5-turbo",
+    model=os.getenv("OPENAI_EMBEDDING_MODEL"),
     openai_api_key=CHAT_KEY,
     temperature=0.0,
 )
