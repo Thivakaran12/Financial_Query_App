@@ -1,14 +1,12 @@
-# ── Stage 1: build Python deps ─────────────────────────────────────────────
 FROM python:3.11-slim AS builder
 WORKDIR /app
 
-# copy only requirements (context has requirements.txt at its root)
+# copy only requirements 
 COPY requirements.txt .
 
 RUN pip install --user --upgrade pip \
  && pip install --user -r requirements.txt
 
-# ── Stage 2: runtime image ─────────────────────────────────────────────────
 FROM python:3.11-slim
 WORKDIR /app
 
