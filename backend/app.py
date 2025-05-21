@@ -110,7 +110,7 @@ CHAT_KEY = os.getenv("OPENAI_API_KEY") or EMBED_KEY
 llm = ChatOpenAI(
     model=os.getenv("OPENAI_EMBEDDING_MODEL"),
     openai_api_key=CHAT_KEY,
-    temperature=0.0,
+    temperature=0.8,
 )
 logger.info("ChatOpenAI initialized (model=gpt-3.5-turbo)")
 
