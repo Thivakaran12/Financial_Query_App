@@ -5,6 +5,8 @@ venv/
 node_modules/
 frontend/financial-dashboard/node_modules/
 
+# Environment files
+.env
 
 # Database files
 backend/data/index/*.sqlite3
